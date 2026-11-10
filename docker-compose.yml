@@ -1,0 +1,156 @@
+x-app-environment: &app-environment
+  NODE_ENV: ${NODE_ENV:-production}
+  PORT: "3000"
+  GRPC_PORT: "50051"
+  LOG_LEVEL: ${LOG_LEVEL:-info}
+  DATABASE_URL: postgresql://postgres:postgres@postgres:5432/tickets-handler
+  KAFKA_BROKERS: kafka:29092
+  KAFKA_CLIENT_ID: tickets-handler
+  KAFKA_GROUP_ID: tickets-handler-workers
+  ELASTICSEARCH_URL: http://elasticsearch:9200
+  REDIS_URL: redis://redis:6379
+  OTEL_SERVICE_NAME: tickets-handler
+  OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4318
+  RATE_LIMIT_MAX: ${RATE_LIMIT_MAX:-100}
+  RATE_LIMIT_WINDOW_MS: ${RATE_LIMIT_WINDOW_MS:-60000}
+  JWT_SECRET: ${JWT_SECRET:-change-me-change-me-change-me-change-me}
+  JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-15m}
+  ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@example.com}
+  ADMIN_PASSWORD: ${ADMIN_PASSWORD:-change-me-admin-password}
+  REFRESH_TOKEN_TTL_DAYS: ${REFRESH_TOKEN_TTL_DAYS:-7}
+  SMTP_HOST: mailpit
+  SMTP_PORT: "1025"
+  SMTP_FROM: no-reply@tickets-handler.local
+  APP_PUBLIC_URL: ${APP_PUBLIC_URL:-http://localhost:3000}
+  INVITATION_TTL_HOURS: ${INVITATION_TTL_HOURS:-24}
+
+x-app-dependencies: &app-dependencies
+  postgres:
+    condition: service_healthy
+  kafka:
+    condition: service_healthy
+  redis:
+    condition: service_healthy
+  elasticsearch:
+    condition: service_healthy
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: tickets-handler
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d tickets-handler"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    mem_limit: 256m
+  kafka:
+    image: apache/kafka:3.9.1
+    environment:
+      KAFKA_NODE_ID: "1"
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093,INTERNAL://:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,INTERNAL://kafka:29092
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,INTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_HEAP_OPTS: -Xms256m -Xmx512m
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@localhost:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: "1"
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: "1"
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: "1"
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: "0"
+      KAFKA_NUM_PARTITIONS: "3"
+    ports:
+      - "9092:9092"
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server localhost:9092 >/dev/null 2>&1"]
+      interval: 10s
+      timeout: 10s
+      retries: 12
+      start_period: 20s
+    mem_limit: 768m
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    mem_limit: 128m
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:9.4.3
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: "false"
+      ES_JAVA_OPTS: -Xms512m -Xmx512m
+    ports:
+      - "9200:9200"
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs http://localhost:9200/_cluster/health >/dev/null"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 30s
+    mem_limit: 1280m
+  jaeger:
+    image: jaegertracing/all-in-one:1.62.0
+    environment:
+      COLLECTOR_OTLP_ENABLED: "true"
+    ports:
+      - "16686:16686"
+      - "4318:4318"
+    mem_limit: 128m
+  mailpit:
+    image: axllent/mailpit
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    mem_limit: 64m
+  migrate:
+    build:
+      context: .
+      target: build
+    command: sh -c "pnpm db:migrate && node dist/scripts/seed-admin.js"
+    environment: *app-environment
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no"
+  api:
+    build: .
+    environment: *app-environment
+    ports:
+      - "${PORT:-3000}:3000"
+      - "50051:50051"
+    depends_on:
+      <<: *app-dependencies
+      migrate:
+        condition: service_completed_successfully
+    restart: unless-stopped
+    mem_limit: 384m
+  worker:
+    build: .
+    command: ["node", "dist/worker.js"]
+    environment: *app-environment
+    depends_on:
+      <<: *app-dependencies
+      migrate:
+        condition: service_completed_successfully
+    restart: unless-stopped
+    mem_limit: 256m
+
+volumes:
+  pgdata:
+  esdata:

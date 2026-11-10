@@ -1,0 +1,9 @@
+import { CacheInvalidator } from "../contracts/cache";
+
+export class FakeCacheInvalidator implements CacheInvalidator {
+  readonly invalidated: string[] = [];
+
+  async invalidate(id: string): Promise<void> {
+    this.invalidated.push(id);
+  }
+}
