@@ -1,3 +1,5 @@
+import { ApiTags } from "@nestjs/swagger";
+import { ApiZodBody } from "./api-docs";
 import {
   Body,
   Controller,
@@ -31,12 +33,14 @@ const rejectMalformed = (body: unknown): never => {
   throw new OAuthError(grantType === undefined || isKnown ? "invalid_request" : "unsupported_grant_type");
 };
 
+@ApiTags("auth")
 @Controller("oauth")
 @UseFilters(OAuthGrantErrorFilter)
 export class OAuthController {
   constructor(private readonly commands: CommandBus) {}
 
   @Post("token")
+  @ApiZodBody(tokenRequestSchema)
   @HttpCode(HttpStatus.OK)
   @Header("Cache-Control", "no-store")
   @Throttle({ default: TOKEN_RATE_LIMIT })

@@ -1,9 +1,11 @@
+import { ApiTags } from "@nestjs/swagger";
 import { Controller, Get, Inject, ServiceUnavailableException } from "@nestjs/common";
 import { HEALTH_PROBES } from "../../shared/di/tokens";
 import { HealthProbe } from "../../shared/contracts/health-probe";
 
 type ProbeStatus = "up" | "down";
 
+@ApiTags("health")
 @Controller("health")
 export class HealthController {
   constructor(@Inject(HEALTH_PROBES) private readonly probes: HealthProbe[]) {}

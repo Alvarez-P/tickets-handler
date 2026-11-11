@@ -1,3 +1,5 @@
+import { ApiTags } from "@nestjs/swagger";
+import { ApiZodBody } from "./api-docs";
 import { Body, Controller, HttpCode, HttpStatus, Post } from "@nestjs/common";
 import { CommandBus } from "@nestjs/cqrs";
 import { Throttle } from "@nestjs/throttler";
@@ -13,11 +15,13 @@ const acceptInvitationSchema = z.object({
   password: z.string().min(MIN_PASSWORD_LENGTH),
 });
 
+@ApiTags("auth")
 @Controller("invitations")
 export class InvitationsController {
   constructor(private readonly commands: CommandBus) {}
 
   @Post("accept")
+  @ApiZodBody(acceptInvitationSchema)
   @HttpCode(HttpStatus.NO_CONTENT)
   @Throttle({ default: ACCEPT_RATE_LIMIT })
   async accept(@Body() body: unknown): Promise<void> {

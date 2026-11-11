@@ -2,6 +2,7 @@ import "reflect-metadata";
 import "dotenv/config";
 import "./infrastructure/observability/tracing";
 import { NestFactory } from "@nestjs/core";
+import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { AppModule } from "./app.module";
 import { environment } from "./shared/config/environment";
 import { createUserSearchIndex } from "./infrastructure/di/search";
@@ -14,6 +15,8 @@ import { startEventConsumers } from "./infrastructure/events/event-consumers";
 const bootstrap = async (): Promise<void> => {
   const app = await NestFactory.create(AppModule);
   app.enableShutdownHooks();
+  const openApi = new DocumentBuilder().setTitle("tickets-handler").addBearerAuth().build();
+  SwaggerModule.setup("docs", app, () => SwaggerModule.createDocument(app, openApi));
   await app.listen(environment.port);
   const outboxRelay = await createOutboxRelay();
   outboxRelay.start();

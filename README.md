@@ -16,7 +16,7 @@ Levanta la infraestructura y tres servicios de la aplicación:
 | Servicio | Función |
 |---|---|
 | `migrate` | Aplica las migraciones y crea el administrador (`ADMIN_EMAIL` / `ADMIN_PASSWORD`). Termina al acabar. |
-| `api` | REST y GraphQL en `http://localhost:3000`. |
+| `api` | REST y GraphQL en `http://localhost:3000`; documentación Swagger en `/docs` (JSON en `/docs-json`). |
 | `worker` | Consume eventos de Kafka: proyección de tickets en Elasticsearch y notificaciones por correo. |
 
 Herramientas auxiliares: Jaeger en `http://localhost:16686` y Mailpit en `http://localhost:8025`.

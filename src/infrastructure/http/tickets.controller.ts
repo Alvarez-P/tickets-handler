@@ -1,3 +1,5 @@
+import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
+import { ApiZodBody, ApiZodQuery } from "./api-docs";
 import { Body, Controller, ForbiddenException, Get, Param, Post, Query, Req, UnauthorizedException, UseGuards } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import { ReceivedTicket } from "../../application/use-cases/tickets/receive-ticket.use-case";
@@ -22,6 +24,8 @@ const requireClaims = ({ claims }: AuthenticatedRequest): AuthClaims => {
 const seesAllTickets = (roles: readonly string[]): boolean =>
   roles.some((role) => role === "admin" || role === "support-agent");
 
+@ApiTags("tickets")
+@ApiBearerAuth()
 @Controller("tickets")
 @UseGuards(JwtAuthGuard, RolesGuard)
 export class TicketsController {
@@ -31,6 +35,7 @@ export class TicketsController {
   ) {}
 
   @Get()
+  @ApiZodQuery(searchTicketsSchema)
   @Roles("admin", "support-agent", "specialist-agent")
   search(@Query() query: unknown, @Req() request: AuthenticatedRequest): Promise<TicketSearchPage> {
     const { sub, roles } = requireClaims(request);
@@ -49,6 +54,7 @@ export class TicketsController {
   }
 
   @Post()
+  @ApiZodBody(receiveTicketSchema)
   @Roles("admin", "support-agent")
   receive(@Body() body: unknown, @Req() request: AuthenticatedRequest): Promise<ReceivedTicket> {
     const { sub } = requireClaims(request);
@@ -56,6 +62,7 @@ export class TicketsController {
   }
 
   @Post(":id/transitions")
+  @ApiZodBody(transitionTicketSchema)
   @Roles("admin", "support-agent", "specialist-agent")
   transition(
     @Param("id") ticketId: string,

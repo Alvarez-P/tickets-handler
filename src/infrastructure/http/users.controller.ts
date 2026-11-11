@@ -1,3 +1,5 @@
+import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
+import { ApiZodBody } from "./api-docs";
 import { BadRequestException, Body, Controller, Get, NotFoundException, Param, Post, UseGuards } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import { CreateUserCommand, GetUserQuery } from "../../application/use-cases/user.cqrs";
@@ -7,6 +9,8 @@ import { UserRecord } from "../../shared/contracts/user-record";
 import { createUserSchema } from "./create-user.schema";
 import { JwtAuthGuard } from "./jwt-auth.guard";
 
+@ApiTags("users")
+@ApiBearerAuth()
 @Controller("users")
 @UseGuards(JwtAuthGuard, RolesGuard)
 @Roles("admin")
@@ -17,6 +21,7 @@ export class UsersController {
   ) {}
 
   @Post()
+  @ApiZodBody(createUserSchema)
   async create(@Body() body: unknown): Promise<UserRecord> {
     const parsed = createUserSchema.safeParse(body);
     if (!parsed.success) {
