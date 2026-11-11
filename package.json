@@ -31,8 +31,6 @@
     "zod": "4.6.7"
   },
   "devDependencies": {
-    "@nestjs/cli": "12.0.11",
-    "@nestjs/schematics": "12.0.12",
     "@nestjs/testing": "12.2.0",
     "@swc/core": "1.16.20",
     "@types/node": "26.6.5",
@@ -66,12 +64,12 @@
     "reindex:tickets": "ts-node-dev --transpile-only src/scripts/reindex-tickets.ts",
     "seed:admin": "ts-node-dev --transpile-only src/scripts/seed-admin.ts",
     "start": "node dist/main.js",
-    "test": "vitest run test/unit test/e2e",
-    "test:e2e": "vitest run test/e2e",
-    "test:integration": "vitest run --config vitest.integration.config.mts",
-    "test:unit": "vitest run test/unit",
+    "test": "vitest run --project unit --project e2e",
+    "test:e2e": "vitest run --project e2e",
+    "test:integration": "vitest run --project integration",
+    "test:unit": "vitest run --project unit",
     "typecheck": "tsc --noEmit",
-    "validate": "tsc --noEmit && oxlint src test && vitest run test/unit test/e2e",
+    "validate": "tsc --noEmit && oxlint src test && vitest run --project unit --project e2e",
     "worker": "node dist/worker.js"
   },
   "version": "0.1.0"
