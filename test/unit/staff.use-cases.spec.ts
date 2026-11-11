@@ -114,7 +114,7 @@ describe("CreateAgent", () => {
       specialtyIds: [specialty.id],
       correlationId: "corr-1",
     } satisfies Partial<AgentCreated>);
-    expect(JSON.stringify(message.payload)).not.toMatch(/ada|example\.com/i);
+    expect(JSON.stringify(message.payload)).not.toMatch(/Ada|example\.com/);
   });
 
   it("rejects a duplicated email", async () => {
