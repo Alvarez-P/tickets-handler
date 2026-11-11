@@ -39,7 +39,7 @@ pnpm dev:worker   # worker
 |---|---|
 | `dev` / `dev:worker` | API o worker en modo watch. |
 | `build` | Compila a `dist/`; `start` y `worker` ejecutan el resultado. |
-| `validate` | Tipos, lint y tests; el reporte queda en `.ai/test-report.json`. |
+| `validate` | Tipos, lint y tests. |
 | `test:unit` / `test:e2e` / `test:integration` | Suites por separado; la de integración necesita la infraestructura levantada. |
 | `db:generate` / `db:migrate` / `db:push` | Migraciones con drizzle-kit. |
 | `seed:admin` | Crea el usuario administrador. |

@@ -1,7 +1,6 @@
 node_modules
 dist
 .env
-.ai
 dev.db
 dev.db-journal
 prisma/dev.db

@@ -71,7 +71,7 @@
     "test:integration": "vitest run --config vitest.integration.config.mts",
     "test:unit": "vitest run test/unit",
     "typecheck": "tsc --noEmit",
-    "validate": "tsc --noEmit && oxlint src test && vitest run test/unit test/e2e --reporter=json --outputFile=.ai/test-report.json",
+    "validate": "tsc --noEmit && oxlint src test && vitest run test/unit test/e2e",
     "worker": "node dist/worker.js"
   },
   "version": "0.1.0"
