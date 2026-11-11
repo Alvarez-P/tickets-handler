@@ -3,7 +3,6 @@ import { z } from "zod";
 const schema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
   PORT: z.coerce.number().default(3000),
-  GRPC_PORT: z.coerce.number().default(50051),
   LOG_LEVEL: z.enum(["fatal", "error", "warn", "info", "debug", "trace", "silent"]).default("info"),
   DATABASE_URL: z.string().min(1).optional(),
   REDIS_URL: z.string().min(1).optional(),
@@ -25,7 +24,6 @@ const parsed = schema.parse(process.env);
 export const environment = {
   nodeEnv: parsed.NODE_ENV,
   port: parsed.PORT,
-  grpcPort: parsed.GRPC_PORT,
   logLevel: parsed.LOG_LEVEL,
   databaseUrl: parsed.DATABASE_URL,
   redisUrl: parsed.REDIS_URL,

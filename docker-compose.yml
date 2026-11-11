@@ -1,7 +1,6 @@
 x-app-environment: &app-environment
   NODE_ENV: ${NODE_ENV:-production}
   PORT: "3000"
-  GRPC_PORT: "50051"
   LOG_LEVEL: ${LOG_LEVEL:-info}
   DATABASE_URL: postgresql://postgres:postgres@postgres:5432/tickets-handler
   KAFKA_BROKERS: kafka:29092
@@ -133,7 +132,6 @@ services:
     environment: *app-environment
     ports:
       - "${PORT:-3000}:3000"
-      - "50051:50051"
     depends_on:
       <<: *app-dependencies
       migrate:
