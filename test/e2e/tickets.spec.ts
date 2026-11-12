@@ -109,4 +109,25 @@ describe("tickets api", () => {
     expect((await send("get", "/tickets?sortBy=subject", support)).status).toBe(400);
     expect((await send("get", "/tickets?status=bogus", support)).status).toBe(400);
   });
+
+  it("serves the same role-scoped ticket queries over graphql", async () => {
+    const graphql = (query: string, auth?: string) => send("post", "/graphql", auth).send({ query });
+    const received = await send("post", "/tickets", support).send({ ...ticket, subject: "Graphql quokka" });
+    await projectTicket.execute({ ticketId: received.body.id });
+    const byId = `{ ticket(id: "${received.body.id}") { id status subject assigneeId priority tags } }`;
+
+    const own = await graphql(byId, specialist);
+    const other = await graphql(byId, await bearer("other", "specialist-agent"));
+    const found = await graphql(`{ tickets(text: "quokka", sortBy: createdAt, order: asc) { total items { id } } }`, support);
+    const foreign = await graphql(`{ tickets(assigneeId: "${specialistId}") { total } }`, await bearer("other", "specialist-agent"));
+    const anonymous = await graphql(byId);
+    const invalid = await graphql(`{ tickets(limit: 500) { total } }`, support);
+
+    expect(own.body.data.ticket).toMatchObject({ id: received.body.id, status: "assigned", subject: "Graphql quokka", assigneeId: specialistId });
+    expect(other.body.errors[0].extensions).toMatchObject({ code: "ticket_not_found", status: 404 });
+    expect(found.body.data.tickets).toEqual({ total: 1, items: [{ id: received.body.id }] });
+    expect(foreign.body.data.tickets).toEqual({ total: 0 });
+    expect(anonymous.body.errors[0].message).toMatch(/unauthorized/i);
+    expect(invalid.body.errors).toHaveLength(1);
+  });
 });
