@@ -6,7 +6,7 @@ import {
   CreateSpecialtyCommand,
   ListSpecialtiesQuery,
   SetSpecialtyActiveCommand,
-} from "../../application/use-cases/staff/staff.cqrs";
+} from "../cqrs/staff.cqrs";
 import { Specialty } from "../../domain/entities/specialty";
 import { Page } from "../../domain/repositories/query";
 import { Roles } from "../auth/roles.decorator";

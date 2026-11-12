@@ -7,7 +7,7 @@ import {
   GetAgentQuery,
   ListAgentsQuery,
   UpdateAgentCommand,
-} from "../../application/use-cases/staff/staff.cqrs";
+} from "../cqrs/staff.cqrs";
 import { Agent } from "../../domain/entities/agent";
 import { Page } from "../../domain/repositories/query";
 import { Roles } from "../auth/roles.decorator";

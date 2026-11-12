@@ -2,7 +2,7 @@ import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
 import { APP_FILTER, APP_GUARD } from "@nestjs/core";
 import { ThrottlerModule } from "@nestjs/throttler";
 import { environment } from "./shared/config/environment";
-import { CONTAINER } from "./shared/di/tokens";
+import { CONTAINER } from "./infrastructure/di/tokens";
 import { CompositionModule } from "./infrastructure/di/composition.module";
 import { Container } from "./infrastructure/di/container";
 import { RestModule } from "./infrastructure/http/rest.module";

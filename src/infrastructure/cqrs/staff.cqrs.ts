@@ -1,11 +1,11 @@
 import { Inject } from "@nestjs/common";
 import { CommandHandler, ICommandHandler, IQueryHandler, QueryHandler } from "@nestjs/cqrs";
-import { Agent } from "../../../domain/entities/agent";
-import { Specialty } from "../../../domain/entities/specialty";
-import { AgentFilter } from "../../../domain/repositories/agent.repository";
-import { Page } from "../../../domain/repositories/query";
-import { UseCase } from "../../use-case";
-import { Command, Query } from "../../../shared/cqrs/cqrs";
+import { Agent } from "../../domain/entities/agent";
+import { Specialty } from "../../domain/entities/specialty";
+import { AgentFilter } from "../../domain/repositories/agent.repository";
+import { Page } from "../../domain/repositories/query";
+import { UseCase } from "../../application/use-case";
+import { Command, Query } from "./cqrs";
 import {
   CREATE_AGENT,
   CREATE_SPECIALTY,
@@ -14,12 +14,12 @@ import {
   LIST_SPECIALTIES,
   SET_SPECIALTY_ACTIVE,
   UPDATE_AGENT,
-} from "../../../shared/di/tokens";
-import { CreateAgentInput } from "./create-agent.use-case";
-import { CreateSpecialtyInput } from "./create-specialty.use-case";
-import { ListSpecialtiesInput } from "./list-specialties.use-case";
-import { SetSpecialtyActiveInput } from "./set-specialty-active.use-case";
-import { UpdateAgentInput } from "./update-agent.use-case";
+} from "../di/tokens";
+import { CreateAgentInput } from "../../application/use-cases/staff/create-agent.use-case";
+import { CreateSpecialtyInput } from "../../application/use-cases/staff/create-specialty.use-case";
+import { ListSpecialtiesInput } from "../../application/use-cases/staff/list-specialties.use-case";
+import { SetSpecialtyActiveInput } from "../../application/use-cases/staff/set-specialty-active.use-case";
+import { UpdateAgentInput } from "../../application/use-cases/staff/update-agent.use-case";
 
 export class CreateSpecialtyCommand extends Command<Specialty> {
   constructor(readonly input: CreateSpecialtyInput) {

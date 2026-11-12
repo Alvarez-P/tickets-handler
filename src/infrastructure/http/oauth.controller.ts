@@ -14,7 +14,7 @@ import {
 } from "@nestjs/common";
 import { CommandBus } from "@nestjs/cqrs";
 import { Throttle } from "@nestjs/throttler";
-import { IssueTokensCommand, RefreshTokensCommand } from "../../application/use-cases/auth/auth.cqrs";
+import { IssueTokensCommand, RefreshTokensCommand } from "../cqrs/auth.cqrs";
 import { TokenPair } from "../../application/use-cases/auth/issue-token-pair.use-case";
 import { VerifiedUser } from "../../application/use-cases/auth/verify-credentials.use-case";
 import { OAuthPasswordGuard } from "../auth/oauth-password.guard";

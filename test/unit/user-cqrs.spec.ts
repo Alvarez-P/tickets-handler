@@ -8,7 +8,7 @@ import {
   GetUserQuery,
   UserCreatedEvent,
   userCqrsHandlers,
-} from "../../src/application/use-cases/user.cqrs";
+} from "../../src/infrastructure/cqrs/user.cqrs";
 import { User } from "../../src/domain/entities/user";
 import { InMemoryUnitOfWork } from "../../src/shared/testing/in-memory-unit-of-work";
 import { InMemoryRepository } from "../../src/shared/testing/in-memory-repository";
