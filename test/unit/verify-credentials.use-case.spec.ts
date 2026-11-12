@@ -1,7 +1,7 @@
 import { VerifyCredentials } from "../../src/application/use-cases/auth/verify-credentials.use-case";
 import { InvalidCredentials } from "../../src/domain/errors/auth-errors";
 import { ScryptPasswordHasher } from "../../src/infrastructure/auth/scrypt-password-hasher";
-import { UserRecord, UserStatus } from "../../src/domain/entities/user";
+import { User, UserStatus } from "../../src/domain/entities/user";
 import { InMemoryCredentialStore } from "../../src/shared/testing/in-memory-auth-stores";
 import { InMemoryRepository } from "../../src/shared/testing/in-memory-repository";
 
@@ -9,7 +9,7 @@ const PASSWORD = "correct-password";
 
 const build = async (status: UserStatus) => {
   const hasher = new ScryptPasswordHasher();
-  const users = new InMemoryRepository<UserRecord>();
+  const users = new InMemoryRepository<User>();
   const credentials = new InMemoryCredentialStore(users);
   await users.save({ id: "u1", email: "ada@example.com", name: "Ada", role: "admin", status });
   await credentials.set("u1", await hasher.hash(PASSWORD));

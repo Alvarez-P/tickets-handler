@@ -7,7 +7,7 @@ import { OutboxWriter } from "../../application/ports/outbox";
 import { resolvePagination } from "../../domain/repositories/pagination";
 import { Page } from "../../domain/repositories/query";
 import { StaffTransaction, StaffUnitOfWork } from "../../application/ports/staff-unit-of-work";
-import { UserRecord } from "../../domain/entities/user";
+import { User } from "../../domain/entities/user";
 import { InMemoryRepository } from "./in-memory-repository";
 import { QueuedMessage } from "./in-memory-unit-of-work";
 
@@ -30,11 +30,11 @@ export class InMemorySpecialtyRepository extends InMemoryRepository<SpecialtyRec
   }
 }
 
-export class InMemoryAgentRepository extends InMemoryRepository<UserRecord> implements AgentRepository {
+export class InMemoryAgentRepository extends InMemoryRepository<User> implements AgentRepository {
   private readonly assignments = new Map<string, string[]>();
   readonly openTickets = new Map<string, number>();
 
-  async findByEmail(email: string): Promise<UserRecord | null> {
+  async findByEmail(email: string): Promise<User | null> {
     const { items } = await this.find({ where: { email }, pageSize: 1 });
     return items[0] ?? null;
   }

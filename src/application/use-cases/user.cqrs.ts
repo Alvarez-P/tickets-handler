@@ -4,11 +4,11 @@ import { CREATE_USER, USERS } from "../../shared/di/tokens";
 import { QueryableRepository } from "../../domain/repositories/queryable-repository";
 import { Role } from "../../domain/value-objects/role";
 import { UseCase } from "../use-case";
-import { UserRecord } from "../../domain/entities/user";
+import { User } from "../../domain/entities/user";
 import { Command, DomainEvent, Query } from "../../shared/cqrs/cqrs";
 import { CreateUserInput } from "./create-user.use-case";
 
-export class CreateUserCommand extends Command<UserRecord> {
+export class CreateUserCommand extends Command<User> {
   constructor(
     readonly email: string,
     readonly name: string,
@@ -19,26 +19,26 @@ export class CreateUserCommand extends Command<UserRecord> {
   }
 }
 
-export class GetUserQuery extends Query<UserRecord | null> {
+export class GetUserQuery extends Query<User | null> {
   constructor(readonly id: string) {
     super();
   }
 }
 
 export class UserCreatedEvent extends DomainEvent {
-  constructor(readonly user: UserRecord) {
+  constructor(readonly user: User) {
     super();
   }
 }
 
 @CommandHandler(CreateUserCommand)
-export class CreateUserHandler implements ICommandHandler<CreateUserCommand, UserRecord> {
+export class CreateUserHandler implements ICommandHandler<CreateUserCommand, User> {
   constructor(
-    @Inject(CREATE_USER) private readonly createUser: UseCase<CreateUserInput, UserRecord>,
+    @Inject(CREATE_USER) private readonly createUser: UseCase<CreateUserInput, User>,
     private readonly events: EventBus,
   ) {}
 
-  async execute(command: CreateUserCommand): Promise<UserRecord> {
+  async execute(command: CreateUserCommand): Promise<User> {
     const user = await this.createUser.execute({
       email: command.email,
       name: command.name,
@@ -51,10 +51,10 @@ export class CreateUserHandler implements ICommandHandler<CreateUserCommand, Use
 }
 
 @QueryHandler(GetUserQuery)
-export class GetUserHandler implements IQueryHandler<GetUserQuery, UserRecord | null> {
-  constructor(@Inject(USERS) private readonly users: QueryableRepository<UserRecord>) {}
+export class GetUserHandler implements IQueryHandler<GetUserQuery, User | null> {
+  constructor(@Inject(USERS) private readonly users: QueryableRepository<User>) {}
 
-  execute(query: GetUserQuery): Promise<UserRecord | null> {
+  execute(query: GetUserQuery): Promise<User | null> {
     return this.users.findById(query.id);
   }
 }

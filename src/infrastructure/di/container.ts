@@ -22,7 +22,7 @@ import { DrizzleInvitationStore } from "../persistence/drizzle-invitation-store"
 import { DrizzleRefreshTokenStore } from "../persistence/drizzle-refresh-token-store";
 import { QueryableRepository } from "../../domain/repositories/queryable-repository";
 import { UseCase } from "../../application/use-case";
-import { UserRecord } from "../../domain/entities/user";
+import { User } from "../../domain/entities/user";
 import { createPersistence } from "./persistence";
 import { StaffContainer, buildStaffContainer } from "./staff";
 import { TicketsContainer, buildTicketsContainer } from "./tickets";
@@ -52,8 +52,8 @@ import { requireElasticsearchUrl } from "../../shared/config/environment";
 export type { CreateUserInput };
 
 export interface Container {
-  users: QueryableRepository<UserRecord>;
-  createUser: UseCase<CreateUserInput, UserRecord>;
+  users: QueryableRepository<User>;
+  createUser: UseCase<CreateUserInput, User>;
   tokens: TokenService;
   credentialStore: CredentialStore;
   refreshTokenStore: RefreshTokenStore;

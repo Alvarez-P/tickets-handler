@@ -4,12 +4,12 @@ import { Agent, AGENT_ROLES, AgentRole, isAgentRole } from "../../domain/entitie
 import { AgentFilter, AgentRepository } from "../../domain/repositories/agent.repository";
 import { resolvePagination } from "../../domain/repositories/pagination";
 import { Page } from "../../domain/repositories/query";
-import { UserRecord } from "../../domain/entities/user";
+import { User } from "../../domain/entities/user";
 import { DrizzleBaseRepository } from "./drizzle-base.repository";
 import { DrizzleClient } from "./drizzle-client";
 import { agentSpecialties, users } from "./schema";
 
-const toUserRecord = (row: typeof users.$inferSelect): UserRecord => ({
+const toUserRecord = (row: typeof users.$inferSelect): User => ({
   id: row.id,
   email: row.email,
   name: row.name,
@@ -23,12 +23,12 @@ const toAgent = (row: typeof users.$inferSelect, role: AgentRole, specialtyIds: 
   specialtyIds,
 });
 
-export class DrizzleAgentRepository extends DrizzleBaseRepository<UserRecord> implements AgentRepository {
+export class DrizzleAgentRepository extends DrizzleBaseRepository<User> implements AgentRepository {
   constructor(private readonly db: DrizzleClient) {
     super(db, users);
   }
 
-  async findByEmail(email: string): Promise<UserRecord | null> {
+  async findByEmail(email: string): Promise<User | null> {
     const [row] = await this.db.select().from(users).where(eq(users.email, email));
     return row ? toUserRecord(row) : null;
   }

@@ -1,15 +1,15 @@
 import { ProjectUser } from "../../src/application/use-cases/project-user.use-case";
 import { SearchIndex, SearchResult } from "../../src/application/ports/search-index";
-import { UserRecord } from "../../src/domain/entities/user";
+import { User } from "../../src/domain/entities/user";
 
-class FakeIndex implements SearchIndex<UserRecord> {
-  readonly documents = new Map<string, UserRecord>();
+class FakeIndex implements SearchIndex<User> {
+  readonly documents = new Map<string, User>();
 
   async ensureIndex(): Promise<void> {
     return undefined;
   }
 
-  async index(document: UserRecord): Promise<void> {
+  async index(document: User): Promise<void> {
     this.documents.set(document.id, document);
   }
 
@@ -17,7 +17,7 @@ class FakeIndex implements SearchIndex<UserRecord> {
     this.documents.delete(id);
   }
 
-  async search(): Promise<SearchResult<UserRecord>> {
+  async search(): Promise<SearchResult<User>> {
     return { hits: [], total: 0 };
   }
 
@@ -38,7 +38,7 @@ describe("ProjectUser", () => {
   it("is idempotent when the same event is delivered twice", async () => {
     const index = new FakeIndex();
     const projection = new ProjectUser(index);
-    const user: UserRecord = { id: "1", email: "ada@example.com", name: "Ada", role: "support-agent", status: "invited" };
+    const user: User = { id: "1", email: "ada@example.com", name: "Ada", role: "support-agent", status: "invited" };
 
     await projection.execute(user);
     await projection.execute(user);

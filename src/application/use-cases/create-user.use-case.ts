@@ -1,9 +1,9 @@
 import { randomUUID } from "node:crypto";
-import { PasswordHasher } from "../ports/password-hasher";
+import { registerUser, User } from "../../domain/entities/user";
 import { Role } from "../../domain/value-objects/role";
+import { PasswordHasher } from "../ports/password-hasher";
 import { UserUnitOfWork } from "../ports/user-unit-of-work";
 import { UseCase } from "../use-case";
-import { UserRecord, UserStatus } from "../../domain/entities/user";
 
 export interface CreateUserInput {
   email: string;
@@ -12,19 +12,16 @@ export interface CreateUserInput {
   password?: string;
 }
 
-const DEFAULT_ROLE: Role = "support-agent";
-
-export class CreateUser implements UseCase<CreateUserInput, UserRecord> {
+export class CreateUser implements UseCase<CreateUserInput, User> {
   constructor(
     private readonly unitOfWork: UserUnitOfWork,
     private readonly hasher: PasswordHasher,
   ) {}
 
-  async execute({ password, role = DEFAULT_ROLE, ...profile }: CreateUserInput): Promise<UserRecord> {
+  async execute({ password, ...profile }: CreateUserInput): Promise<User> {
     const hash = password === undefined ? undefined : await this.hasher.hash(password);
-    const status: UserStatus = hash === undefined ? "invited" : "active";
     return this.unitOfWork.run(async ({ users, credentials, outbox }) => {
-      const user = await users.save({ id: randomUUID(), ...profile, role, status });
+      const user = await users.save(registerUser(randomUUID(), { ...profile, hasCredentials: hash !== undefined }));
       if (hash !== undefined) {
         await credentials.set(user.id, hash);
       }

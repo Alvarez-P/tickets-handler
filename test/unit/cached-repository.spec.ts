@@ -1,13 +1,13 @@
 import { CachedRepository } from "../../src/infrastructure/cache/cached-repository";
-import { UserRecord } from "../../src/domain/entities/user";
+import { User } from "../../src/domain/entities/user";
 import { InMemoryCache } from "../../src/shared/testing/in-memory-cache";
 import { InMemoryRepository } from "../../src/shared/testing/in-memory-repository";
 
 describe("CachedRepository", () => {
-  const user: UserRecord = { id: "1", email: "ada@example.com", name: "Ada", role: "support-agent", status: "invited" };
+  const user: User = { id: "1", email: "ada@example.com", name: "Ada", role: "support-agent", status: "invited" };
 
   it("serves reads from the cache after a save", async () => {
-    const source = new InMemoryRepository<UserRecord>();
+    const source = new InMemoryRepository<User>();
     const cache = new InMemoryCache();
     const repository = new CachedRepository(source, cache, "user");
 
@@ -18,7 +18,7 @@ describe("CachedRepository", () => {
   });
 
   it("evicts the cache entry on remove", async () => {
-    const repository = new CachedRepository(new InMemoryRepository<UserRecord>(), new InMemoryCache(), "user");
+    const repository = new CachedRepository(new InMemoryRepository<User>(), new InMemoryCache(), "user");
 
     await repository.save(user);
     await repository.remove(user.id);
