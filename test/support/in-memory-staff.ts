@@ -1,13 +1,13 @@
-import { Agent, isAgentRole } from "../../domain/entities/agent";
-import { AgentRef } from "../../domain/entities/ticket";
-import { AgentFilter, AgentRepository } from "../../domain/repositories/agent.repository";
-import { SpecialtyRecord, SpecialtyRepository } from "../../domain/repositories/specialty.repository";
-import { TicketType } from "../../domain/value-objects/ticket-type";
-import { OutboxWriter } from "../../application/ports/outbox";
-import { resolvePagination } from "../../domain/repositories/pagination";
-import { Page } from "../../domain/repositories/query";
-import { StaffTransaction, StaffUnitOfWork } from "../../application/ports/staff-unit-of-work";
-import { User } from "../../domain/entities/user";
+import { Agent, isAgentRole } from "../../src/domain/entities/agent";
+import { AgentRef } from "../../src/domain/entities/ticket";
+import { AgentFilter, AgentRepository } from "../../src/domain/repositories/agent.repository";
+import { SpecialtyRecord, SpecialtyRepository } from "../../src/domain/repositories/specialty.repository";
+import { TicketType } from "../../src/domain/value-objects/ticket-type";
+import { OutboxWriter } from "../../src/application/ports/outbox";
+import { resolvePagination } from "../../src/domain/repositories/pagination";
+import { Page } from "../../src/domain/repositories/query";
+import { StaffTransaction, StaffUnitOfWork } from "../../src/application/ports/staff-unit-of-work";
+import { User } from "../../src/domain/entities/user";
 import { InMemoryRepository } from "./in-memory-repository";
 import { QueuedMessage } from "./in-memory-unit-of-work";
 

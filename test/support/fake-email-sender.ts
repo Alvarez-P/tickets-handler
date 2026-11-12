@@ -1,4 +1,4 @@
-import { EmailMessage, EmailSender } from "../../application/ports/email-sender";
+import { EmailMessage, EmailSender } from "../../src/application/ports/email-sender";
 
 export class FakeEmailSender implements EmailSender {
   readonly sent: EmailMessage[] = [];

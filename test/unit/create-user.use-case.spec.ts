@@ -1,9 +1,9 @@
 import { ScryptPasswordHasher } from "../../src/infrastructure/outbound/security/scrypt-password-hasher";
 import { CreateUser } from "../../src/application/use-cases/create-user.use-case";
 import { User } from "../../src/domain/entities/user";
-import { InMemoryCredentialStore } from "../../src/shared/testing/in-memory-auth-stores";
-import { InMemoryRepository } from "../../src/shared/testing/in-memory-repository";
-import { InMemoryUnitOfWork } from "../../src/shared/testing/in-memory-unit-of-work";
+import { InMemoryCredentialStore } from "../support/in-memory-auth-stores";
+import { InMemoryRepository } from "../support/in-memory-repository";
+import { InMemoryUnitOfWork } from "../support/in-memory-unit-of-work";
 
 describe("CreateUser", () => {
   it("persists the user with a generated id", async () => {

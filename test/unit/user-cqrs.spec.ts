@@ -10,8 +10,8 @@ import {
   userCqrsHandlers,
 } from "../../src/infrastructure/inbound/cqrs/user.cqrs";
 import { User } from "../../src/domain/entities/user";
-import { InMemoryUnitOfWork } from "../../src/shared/testing/in-memory-unit-of-work";
-import { InMemoryRepository } from "../../src/shared/testing/in-memory-repository";
+import { InMemoryUnitOfWork } from "../support/in-memory-unit-of-work";
+import { InMemoryRepository } from "../support/in-memory-repository";
 
 const build = async () => {
   const users = new InMemoryRepository<User>();

@@ -3,7 +3,7 @@ import { ProjectTicket } from "../../src/application/use-cases/tickets/project-t
 import { ReindexTickets } from "../../src/application/use-cases/tickets/reindex-tickets.use-case";
 import { TicketView } from "../../src/application/use-cases/tickets/ticket-view.projection";
 import { Ticket } from "../../src/domain/entities/ticket";
-import { InMemorySearchIndex, InMemoryTicketRepository } from "../../src/shared/testing/in-memory-tickets";
+import { InMemorySearchIndex, InMemoryTicketRepository } from "../support/in-memory-tickets";
 
 const receive = (id: string) =>
   Ticket.receive(id, { subject: `s-${id}`, description: "d", customer: { email: "c@x.com", name: "C" }, createdBy: "u" });

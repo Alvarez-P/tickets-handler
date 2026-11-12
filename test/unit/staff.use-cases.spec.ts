@@ -1,4 +1,4 @@
-import { FakeCacheInvalidator } from "../../src/shared/testing/fake-cache-invalidator";
+import { FakeCacheInvalidator } from "../support/fake-cache-invalidator";
 import { CreateAgent } from "../../src/application/use-cases/staff/create-agent.use-case";
 import { CreateSpecialty } from "../../src/application/use-cases/staff/create-specialty.use-case";
 import { SetSpecialtyActive } from "../../src/application/use-cases/staff/set-specialty-active.use-case";
@@ -18,7 +18,7 @@ import {
   InMemoryAgentRepository,
   InMemorySpecialtyRepository,
   InMemoryStaffUnitOfWork,
-} from "../../src/shared/testing/in-memory-staff";
+} from "../support/in-memory-staff";
 
 const buildStaff = () => {
   const agents = new InMemoryAgentRepository();

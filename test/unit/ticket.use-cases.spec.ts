@@ -5,8 +5,8 @@ import { InvalidTicketTransition, NotTicketAssignee, TicketNotFound } from "../.
 import { TICKET_EVENTS_TOPIC } from "../../src/domain/events/ticket-events";
 import { TicketClassifier } from "../../src/domain/services/ticket-classifier";
 import { Classification } from "../../src/domain/value-objects/classification";
-import { InMemoryAgentRepository, InMemorySpecialtyRepository } from "../../src/shared/testing/in-memory-staff";
-import { InMemoryTicketRepository, InMemoryTicketUnitOfWork } from "../../src/shared/testing/in-memory-tickets";
+import { InMemoryAgentRepository, InMemorySpecialtyRepository } from "../support/in-memory-staff";
+import { InMemoryTicketRepository, InMemoryTicketUnitOfWork } from "../support/in-memory-tickets";
 
 const billing: Classification = { ticketType: "billing", urgency: 2, tags: [], confidence: 0.9, source: "rules" };
 const command = {

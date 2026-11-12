@@ -4,7 +4,7 @@ import request from "supertest";
 import { AppModule } from "../../src/app.module";
 import { SendAgentInvitation } from "../../src/application/use-cases/staff/send-agent-invitation.use-case";
 import { CONTAINER } from "../../src/infrastructure/di/composition.module";
-import { FixedClock } from "../../src/shared/testing/in-memory-auth-stores";
+import { FixedClock } from "../support/in-memory-auth-stores";
 import { TestEnvironment, buildTestEnvironment, tokens } from "./test-container";
 
 const PASSWORD = "a-long-enough-password";

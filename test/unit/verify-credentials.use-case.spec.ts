@@ -2,8 +2,8 @@ import { VerifyCredentials } from "../../src/application/use-cases/auth/verify-c
 import { InvalidCredentials } from "../../src/domain/errors/auth-errors";
 import { ScryptPasswordHasher } from "../../src/infrastructure/outbound/security/scrypt-password-hasher";
 import { User, UserStatus } from "../../src/domain/entities/user";
-import { InMemoryCredentialStore } from "../../src/shared/testing/in-memory-auth-stores";
-import { InMemoryRepository } from "../../src/shared/testing/in-memory-repository";
+import { InMemoryCredentialStore } from "../support/in-memory-auth-stores";
+import { InMemoryRepository } from "../support/in-memory-repository";
 
 const PASSWORD = "correct-password";
 

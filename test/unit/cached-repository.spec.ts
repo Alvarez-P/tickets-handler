@@ -1,7 +1,7 @@
 import { CachedRepository } from "../../src/infrastructure/outbound/cache/cached-repository";
 import { User } from "../../src/domain/entities/user";
-import { InMemoryCache } from "../../src/shared/testing/in-memory-cache";
-import { InMemoryRepository } from "../../src/shared/testing/in-memory-repository";
+import { InMemoryCache } from "../support/in-memory-cache";
+import { InMemoryRepository } from "../support/in-memory-repository";
 
 describe("CachedRepository", () => {
   const user: User = { id: "1", email: "ada@example.com", name: "Ada", role: "support-agent", status: "invited" };

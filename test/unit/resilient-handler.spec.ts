@@ -2,7 +2,7 @@ import { DEAD_LETTER_SUFFIX, resilientHandler } from "../../src/infrastructure/i
 import { EventEnvelope } from "../../src/infrastructure/outbound/messaging/event-envelope";
 import { MessageContext } from "../../src/infrastructure/outbound/messaging/message-consumer";
 import { MessagePublisher, PublishOptions } from "../../src/infrastructure/outbound/messaging/message-publisher";
-import { InMemoryInbox } from "../../src/shared/testing/in-memory-inbox";
+import { InMemoryInbox } from "../support/in-memory-inbox";
 
 const CONSUMER = "test-consumer";
 const envelope: EventEnvelope = { eventId: "evt-1", type: "agent.created", correlationId: "corr-1" };

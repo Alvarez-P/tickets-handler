@@ -1,7 +1,7 @@
-import { CredentialStore } from "../../application/ports/credential-store";
-import { QueryableRepository } from "../../domain/repositories/queryable-repository";
-import { User } from "../../domain/entities/user";
-import { UserTransaction, UserUnitOfWork } from "../../application/ports/user-unit-of-work";
+import { CredentialStore } from "../../src/application/ports/credential-store";
+import { QueryableRepository } from "../../src/domain/repositories/queryable-repository";
+import { User } from "../../src/domain/entities/user";
+import { UserTransaction, UserUnitOfWork } from "../../src/application/ports/user-unit-of-work";
 import { InMemoryCredentialStore } from "./in-memory-auth-stores";
 
 export interface QueuedMessage {
