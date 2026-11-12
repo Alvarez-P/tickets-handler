@@ -1,12 +1,12 @@
 import { randomUUID } from "node:crypto";
-import { Agent } from "../../../domain/entities/agent";
+import { Agent, assertSpecialtyCoverage, toAgentRole, uniqueSpecialtyIds } from "../../../domain/entities/agent";
 import { EmailAlreadyRegistered } from "../../../domain/errors/staff-errors";
 import { AgentCreated, STAFF_EVENTS_TOPIC } from "../../../domain/events/staff-events";
 import { Role } from "../../../domain/value-objects/role";
 import { StaffUnitOfWork } from "../../ports/staff-unit-of-work";
 import { UseCase } from "../../use-case";
 import { correlationContext } from "../../../shared/observability/correlation-context";
-import { requireActiveSpecialties, requireAgentRole, requireSpecialtyCoverage, uniqueIds } from "./staff-rules";
+import { requireActiveSpecialties } from "../../../domain/services/active-specialties";
 
 export interface CreateAgentInput {
   email: string;
@@ -19,10 +19,10 @@ export class CreateAgent implements UseCase<CreateAgentInput, Agent> {
   constructor(private readonly unitOfWork: StaffUnitOfWork) {}
 
   async execute({ email, name, role, specialtyIds }: CreateAgentInput): Promise<Agent> {
-    const agentRole = requireAgentRole(role);
-    const ids = uniqueIds(specialtyIds);
+    const agentRole = toAgentRole(role);
+    const ids = uniqueSpecialtyIds(specialtyIds);
     return this.unitOfWork.run(async ({ agents, specialties, outbox }) => {
-      requireSpecialtyCoverage(agentRole, await requireActiveSpecialties(specialties, ids));
+      assertSpecialtyCoverage(agentRole, await requireActiveSpecialties(specialties, ids));
       if ((await agents.findByEmail(email)) !== null) {
         throw new EmailAlreadyRegistered();
       }

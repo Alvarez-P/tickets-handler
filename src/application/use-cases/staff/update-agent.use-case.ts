@@ -1,10 +1,10 @@
-import { Agent } from "../../../domain/entities/agent";
-import { AgentNotFound, InvalidAgentStatusTransition } from "../../../domain/errors/staff-errors";
+import { Agent, assertSpecialtyCoverage, assertStatusChangeAllowed, toAgentRole, uniqueSpecialtyIds } from "../../../domain/entities/agent";
+import { AgentNotFound } from "../../../domain/errors/staff-errors";
 import { CacheInvalidator } from "../../ports/cache";
 import { Role } from "../../../domain/value-objects/role";
 import { StaffUnitOfWork } from "../../ports/staff-unit-of-work";
 import { UseCase } from "../../use-case";
-import { requireActiveSpecialties, requireAgentRole, requireSpecialtyCoverage, uniqueIds } from "./staff-rules";
+import { requireActiveSpecialties } from "../../../domain/services/active-specialties";
 
 export interface UpdateAgentInput {
   id: string;
@@ -26,16 +26,16 @@ export class UpdateAgent implements UseCase<UpdateAgentInput, Agent> {
       if (current === null) {
         throw new AgentNotFound();
       }
-      const role = input.role === undefined ? current.role : requireAgentRole(input.role);
-      if (input.status !== undefined && current.status === "invited") {
-        throw new InvalidAgentStatusTransition();
+      const role = input.role === undefined ? current.role : toAgentRole(input.role);
+      if (input.status !== undefined) {
+        assertStatusChangeAllowed(current.status);
       }
-      const replacement = input.specialtyIds === undefined ? undefined : uniqueIds(input.specialtyIds);
+      const replacement = input.specialtyIds === undefined ? undefined : uniqueSpecialtyIds(input.specialtyIds);
       const activeSpecialties =
         replacement === undefined
           ? (await specialties.findByIds(current.specialtyIds)).filter((specialty) => specialty.active)
           : await requireActiveSpecialties(specialties, replacement);
-      requireSpecialtyCoverage(role, activeSpecialties);
+      assertSpecialtyCoverage(role, activeSpecialties);
       await agents.save({
         id: current.id,
         email: current.email,
