@@ -2,7 +2,7 @@ import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 import { ApiZodBody } from "./api-docs";
 import { BadRequestException, Body, Controller, Get, NotFoundException, Param, Post, UseGuards } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
-import { CreateUserCommand, GetUserQuery } from "../../application/use-cases/user.cqrs";
+import { CreateUserCommand, GetUserQuery } from "../cqrs/user.cqrs";
 import { Roles } from "../auth/roles.decorator";
 import { RolesGuard } from "../auth/roles.guard";
 import { User } from "../../domain/entities/user";

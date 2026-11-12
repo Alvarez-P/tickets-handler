@@ -1,12 +1,12 @@
 import { Inject } from "@nestjs/common";
 import { CommandHandler, EventBus, ICommandHandler, IQueryHandler, QueryHandler } from "@nestjs/cqrs";
-import { CREATE_USER, USERS } from "../../shared/di/tokens";
+import { CREATE_USER, USERS } from "../di/tokens";
 import { QueryableRepository } from "../../domain/repositories/queryable-repository";
 import { Role } from "../../domain/value-objects/role";
-import { UseCase } from "../use-case";
+import { UseCase } from "../../application/use-case";
 import { User } from "../../domain/entities/user";
-import { Command, DomainEvent, Query } from "../../shared/cqrs/cqrs";
-import { CreateUserInput } from "./create-user.use-case";
+import { Command, DomainEvent, Query } from "./cqrs";
+import { CreateUserInput } from "../../application/use-cases/create-user.use-case";
 
 export class CreateUserCommand extends Command<User> {
   constructor(

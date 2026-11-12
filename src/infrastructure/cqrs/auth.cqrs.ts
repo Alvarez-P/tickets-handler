@@ -1,12 +1,12 @@
 import { Inject } from "@nestjs/common";
 import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
-import { UseCase } from "../../use-case";
-import { Role } from "../../../domain/value-objects/role";
-import { Command } from "../../../shared/cqrs/cqrs";
-import { ACCEPT_INVITATION, ISSUE_TOKEN_PAIR, ROTATE_REFRESH_TOKEN } from "../../../shared/di/tokens";
-import { AcceptInvitationInput } from "./accept-invitation.use-case";
-import { IssueTokenPairInput, TokenPair } from "./issue-token-pair.use-case";
-import { RotateRefreshTokenInput } from "./rotate-refresh-token.use-case";
+import { UseCase } from "../../application/use-case";
+import { Role } from "../../domain/value-objects/role";
+import { Command } from "./cqrs";
+import { ACCEPT_INVITATION, ISSUE_TOKEN_PAIR, ROTATE_REFRESH_TOKEN } from "../di/tokens";
+import { AcceptInvitationInput } from "../../application/use-cases/auth/accept-invitation.use-case";
+import { IssueTokenPairInput, TokenPair } from "../../application/use-cases/auth/issue-token-pair.use-case";
+import { RotateRefreshTokenInput } from "../../application/use-cases/auth/rotate-refresh-token.use-case";
 
 export class IssueTokensCommand extends Command<TokenPair> {
   constructor(

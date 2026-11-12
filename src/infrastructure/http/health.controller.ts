@@ -1,6 +1,6 @@
 import { ApiTags } from "@nestjs/swagger";
 import { Controller, Get, Inject, ServiceUnavailableException } from "@nestjs/common";
-import { HEALTH_PROBES } from "../../shared/di/tokens";
+import { HEALTH_PROBES } from "../di/tokens";
 import { HealthProbe } from "../observability/health-probe";
 
 type ProbeStatus = "up" | "down";

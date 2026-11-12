@@ -1,13 +1,13 @@
 import { Inject } from "@nestjs/common";
 import { CommandHandler, ICommandHandler, IQueryHandler, QueryHandler } from "@nestjs/cqrs";
-import { UseCase } from "../../use-case";
-import { Command, Query } from "../../../shared/cqrs/cqrs";
-import { GET_TICKET, RECEIVE_TICKET, SEARCH_TICKETS, TRANSITION_TICKET } from "../../../shared/di/tokens";
-import { GetTicketInput } from "./get-ticket.use-case";
-import { SearchTicketsInput, TicketSearchPage } from "./search-tickets.use-case";
-import { TicketView } from "./ticket-view.projection";
-import { ReceiveTicketCommand as ReceiveTicketInput, ReceivedTicket } from "./receive-ticket.use-case";
-import { TransitionTicketCommand as TransitionTicketInput, TransitionedTicket } from "./transition-ticket.use-case";
+import { UseCase } from "../../application/use-case";
+import { Command, Query } from "./cqrs";
+import { GET_TICKET, RECEIVE_TICKET, SEARCH_TICKETS, TRANSITION_TICKET } from "../di/tokens";
+import { GetTicketInput } from "../../application/use-cases/tickets/get-ticket.use-case";
+import { SearchTicketsInput, TicketSearchPage } from "../../application/use-cases/tickets/search-tickets.use-case";
+import { TicketView } from "../../application/use-cases/tickets/ticket-view.projection";
+import { ReceiveTicketCommand as ReceiveTicketInput, ReceivedTicket } from "../../application/use-cases/tickets/receive-ticket.use-case";
+import { TransitionTicketCommand as TransitionTicketInput, TransitionedTicket } from "../../application/use-cases/tickets/transition-ticket.use-case";
 
 export class ReceiveTicketCommand extends Command<ReceivedTicket> {
   constructor(readonly input: ReceiveTicketInput) {

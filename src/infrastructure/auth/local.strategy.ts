@@ -3,7 +3,7 @@ import { PassportStrategy } from "@nestjs/passport";
 import { Strategy } from "passport-local";
 import { VerifiedUser, VerifyCredentialsInput } from "../../application/use-cases/auth/verify-credentials.use-case";
 import { UseCase } from "../../application/use-case";
-import { VERIFY_CREDENTIALS } from "../../shared/di/tokens";
+import { VERIFY_CREDENTIALS } from "../di/tokens";
 
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy, "local") {

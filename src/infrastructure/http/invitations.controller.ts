@@ -4,7 +4,7 @@ import { Body, Controller, HttpCode, HttpStatus, Post } from "@nestjs/common";
 import { CommandBus } from "@nestjs/cqrs";
 import { Throttle } from "@nestjs/throttler";
 import { z } from "zod";
-import { AcceptInvitationCommand } from "../../application/use-cases/auth/auth.cqrs";
+import { AcceptInvitationCommand } from "../cqrs/auth.cqrs";
 import { parseInput } from "./parse-input";
 
 const ACCEPT_RATE_LIMIT = { limit: 10, ttl: 60_000 };
