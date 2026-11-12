@@ -1,4 +1,5 @@
 import { ArgumentsHost, Catch, ExceptionFilter, HttpStatus } from "@nestjs/common";
+import { GraphQLError } from "graphql";
 import { DomainError } from "../../../domain/errors/domain-error";
 
 export const domainErrorStatuses: Record<string, number> = {
@@ -25,10 +26,13 @@ export interface ErrorResponse {
 @Catch(DomainError)
 export class DomainErrorFilter implements ExceptionFilter<DomainError> {
   catch(error: DomainError, host: ArgumentsHost): void {
+    const status = domainErrorStatuses[error.code] ?? HttpStatus.CONFLICT;
+    if (host.getType<string>() === "graphql") {
+      throw new GraphQLError(error.message, { extensions: { code: error.code, status } });
+    }
     if (host.getType() !== "http") {
       throw error;
     }
-    const status = domainErrorStatuses[error.code] ?? HttpStatus.CONFLICT;
     host.switchToHttp().getResponse<ErrorResponse>().status(status).json({ code: error.code, message: error.message });
   }
 }

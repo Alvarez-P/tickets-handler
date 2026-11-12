@@ -9,6 +9,13 @@ export interface AuthenticatedRequest {
   claims?: AuthClaims;
 }
 
+export const requireClaims = ({ claims }: AuthenticatedRequest): AuthClaims => {
+  if (!claims) {
+    throw new UnauthorizedException();
+  }
+  return claims;
+};
+
 @Injectable()
 export class JwtAuthGuard implements CanActivate {
   constructor(@Inject(TOKENS) private readonly tokens: TokenService) {}

@@ -1,28 +1,18 @@
 import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 import { ApiZodBody, ApiZodQuery } from "./api-docs";
-import { Body, Controller, ForbiddenException, Get, Param, Post, Query, Req, UnauthorizedException, UseGuards } from "@nestjs/common";
+import { Body, Controller, ForbiddenException, Get, Param, Post, Query, Req, UseGuards } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import { ReceivedTicket } from "../../../application/use-cases/tickets/receive-ticket.use-case";
 import { TransitionedTicket } from "../../../application/use-cases/tickets/transition-ticket.use-case";
 import { TicketSearchPage } from "../../../application/use-cases/tickets/search-tickets.use-case";
 import { TicketView } from "../../../application/use-cases/tickets/ticket-view.projection";
 import { GetTicketQuery, ReceiveTicketCommand, SearchTicketsQuery, TransitionTicketCommand } from "../cqrs/tickets.cqrs";
-import { AuthClaims } from "../../../application/ports/token-service";
+import { scopeTicketLookup, scopeTicketSearch } from "../../../application/use-cases/tickets/ticket-visibility";
 import { Roles } from "./auth/roles.decorator";
 import { RolesGuard } from "./auth/roles.guard";
-import { AuthenticatedRequest, JwtAuthGuard } from "./auth/jwt-auth.guard";
+import { AuthenticatedRequest, JwtAuthGuard, requireClaims } from "./auth/jwt-auth.guard";
 import { parseInput } from "./parse-input";
 import { receiveTicketSchema, searchTicketsSchema, transitionTicketSchema } from "./tickets.schemas";
-
-const requireClaims = ({ claims }: AuthenticatedRequest): AuthClaims => {
-  if (!claims) {
-    throw new UnauthorizedException();
-  }
-  return claims;
-};
-
-const seesAllTickets = (roles: readonly string[]): boolean =>
-  roles.some((role) => role === "admin" || role === "support-agent");
 
 @ApiTags("tickets")
 @ApiBearerAuth()
@@ -38,19 +28,15 @@ export class TicketsController {
   @ApiZodQuery(searchTicketsSchema)
   @Roles("admin", "support-agent", "specialist-agent")
   search(@Query() query: unknown, @Req() request: AuthenticatedRequest): Promise<TicketSearchPage> {
-    const { sub, roles } = requireClaims(request);
-    const input = parseInput(searchTicketsSchema, query);
-    const filters = seesAllTickets(roles) ? input.filters : { ...input.filters, assigneeId: sub };
-    return this.queries.execute(new SearchTicketsQuery({ ...input, filters }));
+    return this.queries.execute(
+      new SearchTicketsQuery(scopeTicketSearch(requireClaims(request), parseInput(searchTicketsSchema, query))),
+    );
   }
 
   @Get(":id")
   @Roles("admin", "support-agent", "specialist-agent")
   get(@Param("id") ticketId: string, @Req() request: AuthenticatedRequest): Promise<TicketView> {
-    const { sub, roles } = requireClaims(request);
-    return this.queries.execute(
-      new GetTicketQuery({ ticketId, ...(seesAllTickets(roles) ? {} : { onlyAssignedTo: sub }) }),
-    );
+    return this.queries.execute(new GetTicketQuery(scopeTicketLookup(requireClaims(request), ticketId)));
   }
 
   @Post()
