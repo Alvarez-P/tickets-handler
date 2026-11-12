@@ -1,5 +1,5 @@
 import { ThrottlerStorage } from "@nestjs/throttler";
-import { RedisThrottlerStorage } from "../../src/infrastructure/rate-limit/redis-throttler-storage";
+import { RedisThrottlerStorage } from "../../src/infrastructure/inbound/rate-limit/redis-throttler-storage";
 
 const fakeClient = () => {
   const hits = new Map<string, number>();

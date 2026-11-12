@@ -9,8 +9,8 @@ import { createUserSearchIndex } from "./infrastructure/di/search";
 import { ProjectUser } from "./application/use-cases/project-user.use-case";
 import { createOutboxRelay } from "./infrastructure/di/outbox-relay";
 import { createMessageConsumer } from "./infrastructure/di/messaging";
-import { messagingConfig } from "./infrastructure/messaging/messaging-config";
-import { startEventConsumers } from "./infrastructure/events/event-consumers";
+import { messagingConfig } from "./infrastructure/outbound/messaging/messaging-config";
+import { startEventConsumers } from "./infrastructure/inbound/events/event-consumers";
 
 const bootstrap = async (): Promise<void> => {
   const app = await NestFactory.create(AppModule);

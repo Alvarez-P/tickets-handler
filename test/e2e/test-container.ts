@@ -4,9 +4,9 @@ import { RotateRefreshToken } from "../../src/application/use-cases/auth/rotate-
 import { VerifyCredentials } from "../../src/application/use-cases/auth/verify-credentials.use-case";
 import { AcceptInvitation } from "../../src/application/use-cases/auth/accept-invitation.use-case";
 import { CreateUser } from "../../src/application/use-cases/create-user.use-case";
-import { JoseTokenService } from "../../src/infrastructure/auth/jose-token-service";
-import { ScryptPasswordHasher } from "../../src/infrastructure/auth/scrypt-password-hasher";
-import { SystemClock } from "../../src/infrastructure/auth/system-clock";
+import { JoseTokenService } from "../../src/infrastructure/outbound/security/jose-token-service";
+import { ScryptPasswordHasher } from "../../src/infrastructure/outbound/security/scrypt-password-hasher";
+import { SystemClock } from "../../src/infrastructure/outbound/clock/system-clock";
 import { Container } from "../../src/infrastructure/di/container";
 import { buildStaffContainer } from "../../src/infrastructure/di/staff";
 import { buildTicketsContainer } from "../../src/infrastructure/di/tickets";

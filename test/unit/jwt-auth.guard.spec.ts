@@ -1,6 +1,6 @@
 import { ExecutionContext, UnauthorizedException } from "@nestjs/common";
-import { JoseTokenService } from "../../src/infrastructure/auth/jose-token-service";
-import { JwtAuthGuard } from "../../src/infrastructure/http/jwt-auth.guard";
+import { JoseTokenService } from "../../src/infrastructure/outbound/security/jose-token-service";
+import { JwtAuthGuard } from "../../src/infrastructure/inbound/http/auth/jwt-auth.guard";
 import { durationToSeconds } from "../../src/shared/utils/duration";
 
 const tokens = new JoseTokenService("test-secret-test-secret-test-secret-1234");

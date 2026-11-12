@@ -1,5 +1,5 @@
-import { OutboxRelay } from "../../src/infrastructure/outbox/outbox-relay";
-import { MessagePublisher } from "../../src/infrastructure/messaging/message-publisher";
+import { OutboxRelay } from "../../src/infrastructure/outbound/outbox/outbox-relay";
+import { MessagePublisher } from "../../src/infrastructure/outbound/messaging/message-publisher";
 import { OutboxMessage, OutboxStore } from "../../src/application/ports/outbox";
 
 class FakeStore implements OutboxStore {

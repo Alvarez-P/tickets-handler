@@ -1,6 +1,6 @@
 import { ArgumentsHost } from "@nestjs/common";
 import { DomainError } from "../../src/domain/errors/domain-error";
-import { DomainErrorFilter, domainErrorStatuses } from "../../src/infrastructure/http/domain-error.filter";
+import { DomainErrorFilter, domainErrorStatuses } from "../../src/infrastructure/inbound/http/domain-error.filter";
 
 class SampleError extends DomainError {
   readonly code = "SAMPLE";

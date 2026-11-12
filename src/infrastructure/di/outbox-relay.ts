@@ -1,12 +1,6 @@
-import { OutboxMessage } from "../../application/ports/outbox";
-import { OutboxRelay } from "../outbox/outbox-relay";
+import { agentIdKey, OutboxRelay } from "../outbound/outbox/outbox-relay";
 import { createMessagePublisher } from "./messaging";
 import { createPersistence } from "./persistence";
-
-const keyOfMessage = ({ payload }: OutboxMessage): string | undefined =>
-  typeof payload === "object" && payload !== null && "agentId" in payload && typeof payload.agentId === "string"
-    ? payload.agentId
-    : undefined;
 
 export interface RunningOutboxRelay {
   start(): void;
@@ -16,7 +10,7 @@ export interface RunningOutboxRelay {
 export const createOutboxRelay = async (): Promise<RunningOutboxRelay> => {
   const persistence = await createPersistence();
   const messaging = await createMessagePublisher();
-  const relay = new OutboxRelay(persistence.outbox, messaging.publisher, undefined, undefined, keyOfMessage);
+  const relay = new OutboxRelay(persistence.outbox, messaging.publisher, undefined, undefined, agentIdKey);
   return {
     start: () => relay.start(),
     stop: async () => {

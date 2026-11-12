@@ -2,7 +2,7 @@ import { ExecutionContext } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
 import { GqlExecutionContext } from "@nestjs/graphql";
 import { ThrottlerGuard, ThrottlerStorageService } from "@nestjs/throttler";
-import { GqlThrottlerGuard } from "../../src/infrastructure/rate-limit/gql-throttler.guard";
+import { GqlThrottlerGuard } from "../../src/infrastructure/inbound/rate-limit/gql-throttler.guard";
 
 class Probe extends GqlThrottlerGuard {
   exchange(context: ExecutionContext) {

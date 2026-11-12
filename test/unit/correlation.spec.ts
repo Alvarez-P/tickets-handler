@@ -1,4 +1,4 @@
-import { CorrelationIdMiddleware } from "../../src/infrastructure/http/correlation-id.middleware";
+import { CorrelationIdMiddleware } from "../../src/infrastructure/inbound/http/correlation-id.middleware";
 import { correlationContext } from "../../src/shared/observability/correlation-context";
 
 describe("correlation", () => {

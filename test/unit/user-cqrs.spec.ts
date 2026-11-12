@@ -1,14 +1,14 @@
 import { CommandBus, CqrsModule, EventBus, QueryBus } from "@nestjs/cqrs";
 import { Test } from "@nestjs/testing";
 import { CREATE_USER, USERS } from "../../src/infrastructure/di/tokens";
-import { ScryptPasswordHasher } from "../../src/infrastructure/auth/scrypt-password-hasher";
+import { ScryptPasswordHasher } from "../../src/infrastructure/outbound/security/scrypt-password-hasher";
 import { CreateUser } from "../../src/application/use-cases/create-user.use-case";
 import {
   CreateUserCommand,
   GetUserQuery,
   UserCreatedEvent,
   userCqrsHandlers,
-} from "../../src/infrastructure/cqrs/user.cqrs";
+} from "../../src/infrastructure/inbound/cqrs/user.cqrs";
 import { User } from "../../src/domain/entities/user";
 import { InMemoryUnitOfWork } from "../../src/shared/testing/in-memory-unit-of-work";
 import { InMemoryRepository } from "../../src/shared/testing/in-memory-repository";

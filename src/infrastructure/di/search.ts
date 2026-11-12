@@ -1,6 +1,6 @@
 import type { TicketView } from "../../application/use-cases/tickets/ticket-view.projection";
 import { Client } from "@elastic/elasticsearch";
-import { ElasticsearchSearchIndex } from "../search/elasticsearch-search-index";
+import { ElasticsearchSearchIndex } from "../outbound/search/elasticsearch-search-index";
 import { requireElasticsearchUrl } from "../../shared/config/environment";
 import { SearchIndex } from "../../application/ports/search-index";
 import { User } from "../../domain/entities/user";
