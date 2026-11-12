@@ -1,13 +1,13 @@
 import { randomUUID } from "node:crypto";
-import { Ticket } from "../../domain/entities/ticket";
-import { ConcurrencyConflict } from "../../domain/errors/ticket-errors";
-import { EventMetadata, StoredTicketEvent } from "../../domain/events/ticket-events";
-import { AgentRepository } from "../../domain/repositories/agent.repository";
-import { SpecialtyRepository } from "../../domain/repositories/specialty.repository";
-import { TicketEventLog } from "../../domain/repositories/ticket-event-log";
-import { TicketRepository } from "../../domain/repositories/ticket.repository";
-import { SearchIndex, SearchOptions, SearchResult } from "../../application/ports/search-index";
-import { TicketTransaction, TicketUnitOfWork } from "../../application/ports/ticket-unit-of-work";
+import { Ticket } from "../../src/domain/entities/ticket";
+import { ConcurrencyConflict } from "../../src/domain/errors/ticket-errors";
+import { EventMetadata, StoredTicketEvent } from "../../src/domain/events/ticket-events";
+import { AgentRepository } from "../../src/domain/repositories/agent.repository";
+import { SpecialtyRepository } from "../../src/domain/repositories/specialty.repository";
+import { TicketEventLog } from "../../src/domain/repositories/ticket-event-log";
+import { TicketRepository } from "../../src/domain/repositories/ticket.repository";
+import { SearchIndex, SearchOptions, SearchResult } from "../../src/application/ports/search-index";
+import { TicketTransaction, TicketUnitOfWork } from "../../src/application/ports/ticket-unit-of-work";
 import { InMemoryOutboxWriter } from "./in-memory-staff";
 
 export class InMemoryTicketRepository implements TicketRepository {

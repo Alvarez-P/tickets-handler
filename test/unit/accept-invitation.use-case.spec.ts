@@ -4,11 +4,11 @@ import { InvalidCredentials, InvalidInvitation } from "../../src/domain/errors/a
 import { ScryptPasswordHasher } from "../../src/infrastructure/outbound/security/scrypt-password-hasher";
 import { User } from "../../src/domain/entities/user";
 import { CryptoUtils } from "../../src/shared/utils/crypto";
-import { FakeCacheInvalidator } from "../../src/shared/testing/fake-cache-invalidator";
-import { FixedClock, InMemoryCredentialStore } from "../../src/shared/testing/in-memory-auth-stores";
-import { InMemoryInvitationStore } from "../../src/shared/testing/in-memory-invitation-store";
-import { InMemoryRepository } from "../../src/shared/testing/in-memory-repository";
-import { InMemoryUnitOfWork } from "../../src/shared/testing/in-memory-unit-of-work";
+import { FakeCacheInvalidator } from "../support/fake-cache-invalidator";
+import { FixedClock, InMemoryCredentialStore } from "../support/in-memory-auth-stores";
+import { InMemoryInvitationStore } from "../support/in-memory-invitation-store";
+import { InMemoryRepository } from "../support/in-memory-repository";
+import { InMemoryUnitOfWork } from "../support/in-memory-unit-of-work";
 
 const NOW = new Date("2026-01-01T00:00:00Z");
 const TOKEN = "plain-invitation-token";

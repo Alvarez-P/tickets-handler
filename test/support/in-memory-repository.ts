@@ -1,6 +1,6 @@
-import { Page, Query } from "../../domain/repositories/query";
-import { resolvePagination } from "../../domain/repositories/pagination";
-import { QueryableRepository } from "../../domain/repositories/queryable-repository";
+import { Page, Query } from "../../src/domain/repositories/query";
+import { resolvePagination } from "../../src/domain/repositories/pagination";
+import { QueryableRepository } from "../../src/domain/repositories/queryable-repository";
 
 export class InMemoryRepository<TEntity extends { id: string }> implements QueryableRepository<TEntity> {
   private readonly rows = new Map<string, TEntity>();

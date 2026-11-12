@@ -1,10 +1,10 @@
 import { SendAgentInvitation } from "../../src/application/use-cases/staff/send-agent-invitation.use-case";
 import { User } from "../../src/domain/entities/user";
 import { CryptoUtils } from "../../src/shared/utils/crypto";
-import { FakeEmailSender } from "../../src/shared/testing/fake-email-sender";
-import { FixedClock } from "../../src/shared/testing/in-memory-auth-stores";
-import { InMemoryInvitationStore } from "../../src/shared/testing/in-memory-invitation-store";
-import { InMemoryAgentRepository } from "../../src/shared/testing/in-memory-staff";
+import { FakeEmailSender } from "../support/fake-email-sender";
+import { FixedClock } from "../support/in-memory-auth-stores";
+import { InMemoryInvitationStore } from "../support/in-memory-invitation-store";
+import { InMemoryAgentRepository } from "../support/in-memory-staff";
 
 const NOW = new Date("2026-01-01T00:00:00Z");
 const settings = { publicUrl: "https://app.example.com", ttlHours: 24 };

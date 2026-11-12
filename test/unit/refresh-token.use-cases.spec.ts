@@ -3,8 +3,8 @@ import { RotateRefreshToken } from "../../src/application/use-cases/auth/rotate-
 import { InvalidRefreshToken } from "../../src/domain/errors/auth-errors";
 import { JoseTokenService } from "../../src/infrastructure/outbound/security/jose-token-service";
 import { User } from "../../src/domain/entities/user";
-import { FixedClock, InMemoryRefreshTokenStore } from "../../src/shared/testing/in-memory-auth-stores";
-import { InMemoryRepository } from "../../src/shared/testing/in-memory-repository";
+import { FixedClock, InMemoryRefreshTokenStore } from "../support/in-memory-auth-stores";
+import { InMemoryRepository } from "../support/in-memory-repository";
 
 const SECONDS_PER_DAY = 86_400;
 
