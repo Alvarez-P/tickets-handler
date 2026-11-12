@@ -2,9 +2,9 @@ import { randomUUID } from "node:crypto";
 import { Agent } from "../../../domain/entities/agent";
 import { EmailAlreadyRegistered } from "../../../domain/errors/staff-errors";
 import { AgentCreated, STAFF_EVENTS_TOPIC } from "../../../domain/events/staff-events";
-import { Role } from "../../../shared/contracts/role";
-import { StaffUnitOfWork } from "../../../shared/contracts/staff-unit-of-work";
-import { UseCase } from "../../../shared/contracts/use-case";
+import { Role } from "../../../domain/value-objects/role";
+import { StaffUnitOfWork } from "../../ports/staff-unit-of-work";
+import { UseCase } from "../../use-case";
 import { correlationContext } from "../../../shared/observability/correlation-context";
 import { requireActiveSpecialties, requireAgentRole, requireSpecialtyCoverage, uniqueIds } from "./staff-rules";
 

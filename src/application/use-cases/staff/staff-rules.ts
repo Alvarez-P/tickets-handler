@@ -2,7 +2,7 @@ import { AgentRole, isAgentRole } from "../../../domain/entities/agent";
 import { Specialty } from "../../../domain/entities/specialty";
 import { InvalidAgentRole, SpecialistRequiresSpecialties, SpecialtyNotFound } from "../../../domain/errors/staff-errors";
 import { SpecialtyRepository } from "../../../domain/repositories/specialty.repository";
-import { Role } from "../../../shared/contracts/role";
+import { Role } from "../../../domain/value-objects/role";
 
 export const requireAgentRole = (role: Role): AgentRole => {
   if (!isAgentRole(role)) {

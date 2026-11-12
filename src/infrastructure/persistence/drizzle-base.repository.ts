@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
-import { Page, Query, QueryAdapter } from "../../shared/contracts/query";
-import { QueryableRepository } from "../../shared/contracts/queryable-repository";
+import { Page, Query, QueryAdapter } from "../../domain/repositories/query";
+import { QueryableRepository } from "../../domain/repositories/queryable-repository";
 import { DrizzleClient } from "./drizzle-client";
 import { DrizzleQueryAdapter, IdentifiedTable } from "./drizzle-query.adapter";
 

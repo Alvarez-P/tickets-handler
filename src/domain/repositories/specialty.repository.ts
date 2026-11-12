@@ -1,4 +1,4 @@
-import type { QueryableRepository } from "../../shared/contracts/queryable-repository";
+import type { QueryableRepository } from "./queryable-repository";
 import type { Specialty } from "../entities/specialty";
 import type { TicketType } from "../value-objects/ticket-type";
 

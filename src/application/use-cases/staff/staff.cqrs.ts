@@ -3,8 +3,8 @@ import { CommandHandler, ICommandHandler, IQueryHandler, QueryHandler } from "@n
 import { Agent } from "../../../domain/entities/agent";
 import { Specialty } from "../../../domain/entities/specialty";
 import { AgentFilter } from "../../../domain/repositories/agent.repository";
-import { Page } from "../../../shared/contracts/query";
-import { UseCase } from "../../../shared/contracts/use-case";
+import { Page } from "../../../domain/repositories/query";
+import { UseCase } from "../../use-case";
 import { Command, Query } from "../../../shared/cqrs/cqrs";
 import {
   CREATE_AGENT,

@@ -2,7 +2,7 @@ import { Inject, Injectable } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
 import { Strategy } from "passport-local";
 import { VerifiedUser, VerifyCredentialsInput } from "../../application/use-cases/auth/verify-credentials.use-case";
-import { UseCase } from "../../shared/contracts/use-case";
+import { UseCase } from "../../application/use-case";
 import { VERIFY_CREDENTIALS } from "../../shared/di/tokens";
 
 @Injectable()

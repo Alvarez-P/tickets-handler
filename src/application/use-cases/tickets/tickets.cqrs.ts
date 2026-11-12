@@ -1,6 +1,6 @@
 import { Inject } from "@nestjs/common";
 import { CommandHandler, ICommandHandler, IQueryHandler, QueryHandler } from "@nestjs/cqrs";
-import { UseCase } from "../../../shared/contracts/use-case";
+import { UseCase } from "../../use-case";
 import { Command, Query } from "../../../shared/cqrs/cqrs";
 import { GET_TICKET, RECEIVE_TICKET, SEARCH_TICKETS, TRANSITION_TICKET } from "../../../shared/di/tokens";
 import { GetTicketInput } from "./get-ticket.use-case";

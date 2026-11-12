@@ -1,4 +1,4 @@
-import { InboxStore } from "../contracts/inbox";
+import { InboxStore } from "../../infrastructure/events/inbox";
 
 export class InMemoryInbox implements InboxStore {
   private readonly processed = new Set<string>();

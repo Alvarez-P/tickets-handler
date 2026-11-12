@@ -1,5 +1,5 @@
 import { TicketEventLog } from "../../../domain/repositories/ticket-event-log";
-import { UseCase } from "../../../shared/contracts/use-case";
+import { UseCase } from "../../use-case";
 import { ProjectTicketInput } from "./project-ticket.use-case";
 
 const DEFAULT_BATCH_SIZE = 200;

@@ -1,9 +1,9 @@
 import { Agent } from "../../../domain/entities/agent";
 import { AgentNotFound, InvalidAgentStatusTransition } from "../../../domain/errors/staff-errors";
-import { CacheInvalidator } from "../../../shared/contracts/cache";
-import { Role } from "../../../shared/contracts/role";
-import { StaffUnitOfWork } from "../../../shared/contracts/staff-unit-of-work";
-import { UseCase } from "../../../shared/contracts/use-case";
+import { CacheInvalidator } from "../../ports/cache";
+import { Role } from "../../../domain/value-objects/role";
+import { StaffUnitOfWork } from "../../ports/staff-unit-of-work";
+import { UseCase } from "../../use-case";
 import { requireActiveSpecialties, requireAgentRole, requireSpecialtyCoverage, uniqueIds } from "./staff-rules";
 
 export interface UpdateAgentInput {

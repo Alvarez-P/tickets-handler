@@ -1,6 +1,6 @@
-import type { Page } from "../../shared/contracts/query";
-import type { QueryableRepository } from "../../shared/contracts/queryable-repository";
-import type { UserRecord, UserStatus } from "../../shared/contracts/user-record";
+import type { Page } from "./query";
+import type { QueryableRepository } from "./queryable-repository";
+import type { UserRecord, UserStatus } from "../entities/user";
 import type { Agent, AgentRole } from "../entities/agent";
 import type { AgentRef } from "../entities/ticket";
 

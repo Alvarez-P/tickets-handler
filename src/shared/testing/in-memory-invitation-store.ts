@@ -1,4 +1,4 @@
-import { InvitationStore } from "../contracts/invitation-store";
+import { InvitationStore } from "../../application/ports/invitation-store";
 
 interface StoredInvitation {
   agentId: string;

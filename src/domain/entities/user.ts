@@ -1,4 +1,4 @@
-import { Role } from "./role";
+import { Role } from "../value-objects/role";
 
 export const USER_STATUSES = ["invited", "active", "disabled"] as const;
 

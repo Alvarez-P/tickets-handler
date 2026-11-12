@@ -1,4 +1,4 @@
-import { TicketTransaction, TicketUnitOfWork } from "../../shared/contracts/ticket-unit-of-work";
+import { TicketTransaction, TicketUnitOfWork } from "../../application/ports/ticket-unit-of-work";
 import { DrizzleAgentRepository } from "./drizzle-agent.repository";
 import { DrizzleClient } from "./drizzle-client";
 import { DrizzleOutbox } from "./drizzle-outbox";

@@ -1,7 +1,7 @@
 import { Ticket } from "../../../domain/entities/ticket";
 import { TicketNotFound } from "../../../domain/errors/ticket-errors";
-import { TicketUnitOfWork } from "../../../shared/contracts/ticket-unit-of-work";
-import { UseCase } from "../../../shared/contracts/use-case";
+import { TicketUnitOfWork } from "../../ports/ticket-unit-of-work";
+import { UseCase } from "../../use-case";
 import { correlationContext } from "../../../shared/observability/correlation-context";
 import { publishTicketEvents } from "./publish-ticket-events";
 

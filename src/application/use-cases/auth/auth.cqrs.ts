@@ -1,7 +1,7 @@
 import { Inject } from "@nestjs/common";
 import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
-import { UseCase } from "../../../shared/contracts/use-case";
-import { Role } from "../../../shared/contracts/role";
+import { UseCase } from "../../use-case";
+import { Role } from "../../../domain/value-objects/role";
 import { Command } from "../../../shared/cqrs/cqrs";
 import { ACCEPT_INVITATION, ISSUE_TOKEN_PAIR, ROTATE_REFRESH_TOKEN } from "../../../shared/di/tokens";
 import { AcceptInvitationInput } from "./accept-invitation.use-case";

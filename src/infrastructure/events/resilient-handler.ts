@@ -1,7 +1,7 @@
-import { EventEnvelope } from "../../shared/contracts/event-envelope";
-import { InboxStore } from "../../shared/contracts/inbox";
-import { MessageContext, MessageHandler } from "../../shared/contracts/message-consumer";
-import { MessagePublisher } from "../../shared/contracts/message-publisher";
+import { EventEnvelope } from "../messaging/event-envelope";
+import { InboxStore } from "./inbox";
+import { MessageContext, MessageHandler } from "../messaging/message-consumer";
+import { MessagePublisher } from "../messaging/message-publisher";
 import { RetryOptions, retry } from "../../shared/utils/async";
 
 export const DEAD_LETTER_SUFFIX = ".dlq";

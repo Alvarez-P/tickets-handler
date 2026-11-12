@@ -1,6 +1,6 @@
 import { TicketNotFound } from "../../../domain/errors/ticket-errors";
 import { TicketEventLog } from "../../../domain/repositories/ticket-event-log";
-import { UseCase } from "../../../shared/contracts/use-case";
+import { UseCase } from "../../use-case";
 import { TicketView, projectTicketView } from "./ticket-view.projection";
 
 export interface GetTicketInput {

@@ -1,6 +1,6 @@
 import { OutboxRelay } from "../../src/infrastructure/outbox/outbox-relay";
-import { MessagePublisher } from "../../src/shared/contracts/message-publisher";
-import { OutboxMessage, OutboxStore } from "../../src/shared/contracts/outbox";
+import { MessagePublisher } from "../../src/infrastructure/messaging/message-publisher";
+import { OutboxMessage, OutboxStore } from "../../src/application/ports/outbox";
 
 class FakeStore implements OutboxStore {
   readonly published: string[] = [];

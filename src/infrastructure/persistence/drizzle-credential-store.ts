@@ -1,5 +1,5 @@
 import { eq } from "drizzle-orm";
-import { CredentialStore, StoredCredential } from "../../shared/contracts/credential-store";
+import { CredentialStore, StoredCredential } from "../../application/ports/credential-store";
 import { DrizzleClient } from "./drizzle-client";
 import { userCredentials, users } from "./schema";
 

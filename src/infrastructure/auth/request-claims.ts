@@ -1,6 +1,6 @@
 import { ExecutionContext } from "@nestjs/common";
 import { GqlExecutionContext } from "@nestjs/graphql";
-import { AuthClaims } from "../../shared/contracts/token-service";
+import { AuthClaims } from "../../application/ports/token-service";
 
 export interface ClaimsCarrier {
   headers: { authorization?: string };

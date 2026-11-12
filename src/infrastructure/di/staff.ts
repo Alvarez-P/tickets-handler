@@ -12,10 +12,10 @@ import {
   SetSpecialtyActiveInput,
 } from "../../application/use-cases/staff/set-specialty-active.use-case";
 import { UpdateAgent, UpdateAgentInput } from "../../application/use-cases/staff/update-agent.use-case";
-import { CacheInvalidator } from "../../shared/contracts/cache";
-import { Page } from "../../shared/contracts/query";
-import { StaffUnitOfWork } from "../../shared/contracts/staff-unit-of-work";
-import { UseCase } from "../../shared/contracts/use-case";
+import { CacheInvalidator } from "../../application/ports/cache";
+import { Page } from "../../domain/repositories/query";
+import { StaffUnitOfWork } from "../../application/ports/staff-unit-of-work";
+import { UseCase } from "../../application/use-case";
 
 export interface StaffContainer {
   specialties: SpecialtyRepository;

@@ -3,7 +3,7 @@ import { Specialty } from "../../../domain/entities/specialty";
 import { ActiveSpecialtyExistsForType, SpecialtyCodeTaken } from "../../../domain/errors/staff-errors";
 import { SpecialtyRepository } from "../../../domain/repositories/specialty.repository";
 import { TicketType } from "../../../domain/value-objects/ticket-type";
-import { UseCase } from "../../../shared/contracts/use-case";
+import { UseCase } from "../../use-case";
 
 export interface CreateSpecialtyInput {
   code: string;

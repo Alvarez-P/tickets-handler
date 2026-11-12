@@ -1,8 +1,8 @@
 import { InvalidCredentials } from "../../../domain/errors/auth-errors";
-import { CredentialStore } from "../../../shared/contracts/credential-store";
-import { PasswordHasher } from "../../../shared/contracts/password-hasher";
-import { Role } from "../../../shared/contracts/role";
-import { UseCase } from "../../../shared/contracts/use-case";
+import { CredentialStore } from "../../ports/credential-store";
+import { PasswordHasher } from "../../ports/password-hasher";
+import { Role } from "../../../domain/value-objects/role";
+import { UseCase } from "../../use-case";
 
 export interface VerifyCredentialsInput {
   email: string;

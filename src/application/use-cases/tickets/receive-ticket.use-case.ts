@@ -2,8 +2,8 @@ import { randomUUID } from "node:crypto";
 import { Ticket, ReceiveTicketInput } from "../../../domain/entities/ticket";
 import { TicketCustomer } from "../../../domain/events/ticket-events";
 import { TicketClassifier } from "../../../domain/services/ticket-classifier";
-import { TicketUnitOfWork } from "../../../shared/contracts/ticket-unit-of-work";
-import { UseCase } from "../../../shared/contracts/use-case";
+import { TicketUnitOfWork } from "../../ports/ticket-unit-of-work";
+import { UseCase } from "../../use-case";
 import { correlationContext } from "../../../shared/observability/correlation-context";
 import { publishTicketEvents } from "./publish-ticket-events";
 

@@ -1,6 +1,6 @@
-import { Cache, CacheInvalidator } from "../../shared/contracts/cache";
-import { Page, Query } from "../../shared/contracts/query";
-import { QueryableRepository } from "../../shared/contracts/queryable-repository";
+import { Cache, CacheInvalidator } from "../../application/ports/cache";
+import { Page, Query } from "../../domain/repositories/query";
+import { QueryableRepository } from "../../domain/repositories/queryable-repository";
 
 export class CachedRepository<TEntity extends { id: string }> implements QueryableRepository<TEntity>, CacheInvalidator {
   constructor(

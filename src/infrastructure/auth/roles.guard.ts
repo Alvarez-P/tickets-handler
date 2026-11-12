@@ -1,6 +1,6 @@
 import { CanActivate, ExecutionContext, ForbiddenException, Injectable } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
-import { Role } from "../../shared/contracts/role";
+import { Role } from "../../domain/value-objects/role";
 import { ROLES_KEY } from "./roles.decorator";
 import { readClaims } from "./request-claims";
 

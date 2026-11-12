@@ -1,10 +1,10 @@
 import { Inject } from "@nestjs/common";
 import { CommandHandler, EventBus, ICommandHandler, IQueryHandler, QueryHandler } from "@nestjs/cqrs";
 import { CREATE_USER, USERS } from "../../shared/di/tokens";
-import { QueryableRepository } from "../../shared/contracts/queryable-repository";
-import { Role } from "../../shared/contracts/role";
-import { UseCase } from "../../shared/contracts/use-case";
-import { UserRecord } from "../../shared/contracts/user-record";
+import { QueryableRepository } from "../../domain/repositories/queryable-repository";
+import { Role } from "../../domain/value-objects/role";
+import { UseCase } from "../use-case";
+import { UserRecord } from "../../domain/entities/user";
 import { Command, DomainEvent, Query } from "../../shared/cqrs/cqrs";
 import { CreateUserInput } from "./create-user.use-case";
 

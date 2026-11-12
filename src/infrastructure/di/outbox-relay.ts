@@ -1,4 +1,4 @@
-import { OutboxMessage } from "../../shared/contracts/outbox";
+import { OutboxMessage } from "../../application/ports/outbox";
 import { OutboxRelay } from "../outbox/outbox-relay";
 import { createMessagePublisher } from "./messaging";
 import { createPersistence } from "./persistence";

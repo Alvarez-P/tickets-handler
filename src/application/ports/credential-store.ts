@@ -1,4 +1,4 @@
-import { Role } from "./role";
+import { Role } from "../../domain/value-objects/role";
 
 export interface StoredCredential {
   userId: string;

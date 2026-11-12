@@ -1,7 +1,7 @@
 import { Specialty } from "../../../domain/entities/specialty";
 import { ActiveSpecialtyExistsForType, SpecialtyNotFound } from "../../../domain/errors/staff-errors";
 import { SpecialtyRepository } from "../../../domain/repositories/specialty.repository";
-import { UseCase } from "../../../shared/contracts/use-case";
+import { UseCase } from "../../use-case";
 
 export interface SetSpecialtyActiveInput {
   id: string;

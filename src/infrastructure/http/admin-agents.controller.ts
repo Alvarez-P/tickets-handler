@@ -9,7 +9,7 @@ import {
   UpdateAgentCommand,
 } from "../../application/use-cases/staff/staff.cqrs";
 import { Agent } from "../../domain/entities/agent";
-import { Page } from "../../shared/contracts/query";
+import { Page } from "../../domain/repositories/query";
 import { Roles } from "../auth/roles.decorator";
 import { RolesGuard } from "../auth/roles.guard";
 import { JwtAuthGuard } from "./jwt-auth.guard";

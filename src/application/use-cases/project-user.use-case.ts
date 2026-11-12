@@ -1,6 +1,6 @@
-import { SearchIndex } from "../../shared/contracts/search-index";
-import { UseCase } from "../../shared/contracts/use-case";
-import { UserRecord } from "../../shared/contracts/user-record";
+import { SearchIndex } from "../ports/search-index";
+import { UseCase } from "../use-case";
+import { UserRecord } from "../../domain/entities/user";
 
 export class ProjectUser implements UseCase<UserRecord, void> {
   constructor(private readonly index: SearchIndex<UserRecord>) {}

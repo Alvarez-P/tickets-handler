@@ -1,5 +1,5 @@
 import { Kafka, Producer } from "kafkajs";
-import { MessagePublisher, PublishOptions } from "../../shared/contracts/message-publisher";
+import { MessagePublisher, PublishOptions } from "./message-publisher";
 
 export class KafkaMessagePublisher implements MessagePublisher {
   private readonly producer: Producer;

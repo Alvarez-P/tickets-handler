@@ -1,9 +1,9 @@
 import { randomUUID } from "node:crypto";
-import { Clock } from "../../../shared/contracts/clock";
-import { RefreshTokenStore } from "../../../shared/contracts/refresh-token-store";
-import { Role } from "../../../shared/contracts/role";
-import { TokenService } from "../../../shared/contracts/token-service";
-import { UseCase } from "../../../shared/contracts/use-case";
+import { Clock } from "../../ports/clock";
+import { RefreshTokenStore } from "../../ports/refresh-token-store";
+import { Role } from "../../../domain/value-objects/role";
+import { TokenService } from "../../ports/token-service";
+import { UseCase } from "../../use-case";
 import { CryptoUtils } from "../../../shared/utils/crypto";
 
 export interface IssueTokenPairInput {

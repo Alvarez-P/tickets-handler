@@ -1,5 +1,5 @@
 import { ExecutionContext, createParamDecorator } from "@nestjs/common";
-import { AuthClaims } from "../../shared/contracts/token-service";
+import { AuthClaims } from "../../application/ports/token-service";
 import { readClaims } from "./request-claims";
 
 export const CurrentUser = createParamDecorator(

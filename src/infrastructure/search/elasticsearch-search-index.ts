@@ -1,5 +1,5 @@
 import { Client } from "@elastic/elasticsearch";
-import { SearchIndex, SearchOptions, SearchResult } from "../../shared/contracts/search-index";
+import { SearchIndex, SearchOptions, SearchResult } from "../../application/ports/search-index";
 
 export interface IndexDefinition {
   name: string;
