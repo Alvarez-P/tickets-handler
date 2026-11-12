@@ -1,7 +1,7 @@
 import { ExecutionContext, ForbiddenException } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
-import { Roles } from "../../src/infrastructure/auth/roles.decorator";
-import { RolesGuard } from "../../src/infrastructure/auth/roles.guard";
+import { Roles } from "../../src/infrastructure/inbound/http/auth/roles.decorator";
+import { RolesGuard } from "../../src/infrastructure/inbound/http/auth/roles.guard";
 
 class Handlers {
   @Roles("admin")

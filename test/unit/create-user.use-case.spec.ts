@@ -1,4 +1,4 @@
-import { ScryptPasswordHasher } from "../../src/infrastructure/auth/scrypt-password-hasher";
+import { ScryptPasswordHasher } from "../../src/infrastructure/outbound/security/scrypt-password-hasher";
 import { CreateUser } from "../../src/application/use-cases/create-user.use-case";
 import { User } from "../../src/domain/entities/user";
 import { InMemoryCredentialStore } from "../../src/shared/testing/in-memory-auth-stores";

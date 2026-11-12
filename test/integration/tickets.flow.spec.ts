@@ -37,11 +37,11 @@ describe("tickets end to end against the compose stack", () => {
       throw new Error("Integration tests only run against a database whose name ends with _it");
     }
     const { AppModule } = await import("../../src/app.module");
-    const { getDrizzleClient, closeDrizzle } = await import("../../src/infrastructure/persistence/database");
-    const { JoseTokenService } = await import("../../src/infrastructure/auth/jose-token-service");
+    const { getDrizzleClient, closeDrizzle } = await import("../../src/infrastructure/outbound/persistence/database");
+    const { JoseTokenService } = await import("../../src/infrastructure/outbound/security/jose-token-service");
     const { createOutboxRelay } = await import("../../src/infrastructure/di/outbox-relay");
     const { startWorker } = await import("../../src/infrastructure/di/worker");
-    const { users } = await import("../../src/infrastructure/persistence/schema");
+    const { users } = await import("../../src/infrastructure/outbound/persistence/schema");
 
     const db = getDrizzleClient();
     await db.execute(

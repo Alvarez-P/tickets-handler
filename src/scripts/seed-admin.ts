@@ -1,10 +1,10 @@
 import "reflect-metadata";
 import "dotenv/config";
 import { randomUUID } from "node:crypto";
-import { ScryptPasswordHasher } from "../infrastructure/auth/scrypt-password-hasher";
-import { closeDrizzle, getDrizzleClient } from "../infrastructure/persistence/database";
-import { DrizzleCredentialStore } from "../infrastructure/persistence/drizzle-credential-store";
-import { DrizzleUserRepository } from "../infrastructure/persistence/drizzle-user.repository";
+import { ScryptPasswordHasher } from "../infrastructure/outbound/security/scrypt-password-hasher";
+import { closeDrizzle, getDrizzleClient } from "../infrastructure/outbound/persistence/database";
+import { DrizzleCredentialStore } from "../infrastructure/outbound/persistence/drizzle-credential-store";
+import { DrizzleUserRepository } from "../infrastructure/outbound/persistence/drizzle-user.repository";
 
 const ADMIN_NAME = "Administrator";
 

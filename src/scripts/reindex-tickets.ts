@@ -6,8 +6,8 @@ import { ReindexTickets } from "../application/use-cases/tickets/reindex-tickets
 import { requireElasticsearchUrl } from "../shared/config/environment";
 import { logger } from "../shared/logging/logger";
 import { createTicketSearchIndex } from "../infrastructure/di/search";
-import { closeDrizzle, getDrizzleClient } from "../infrastructure/persistence/database";
-import { DrizzleTicketEventLog } from "../infrastructure/persistence/drizzle-ticket-event-log";
+import { closeDrizzle, getDrizzleClient } from "../infrastructure/outbound/persistence/database";
+import { DrizzleTicketEventLog } from "../infrastructure/outbound/persistence/drizzle-ticket-event-log";
 
 const TICKETS_INDEX = "tickets";
 

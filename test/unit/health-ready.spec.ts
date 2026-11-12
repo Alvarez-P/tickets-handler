@@ -1,5 +1,5 @@
 import { ServiceUnavailableException } from "@nestjs/common";
-import { HealthController } from "../../src/infrastructure/http/health.controller";
+import { HealthController } from "../../src/infrastructure/inbound/http/health.controller";
 
 describe("GET /health/ready", () => {
   it("reports ok when every probe passes", async () => {

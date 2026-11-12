@@ -1,7 +1,7 @@
 import { AcceptInvitation } from "../../src/application/use-cases/auth/accept-invitation.use-case";
 import { VerifyCredentials } from "../../src/application/use-cases/auth/verify-credentials.use-case";
 import { InvalidCredentials, InvalidInvitation } from "../../src/domain/errors/auth-errors";
-import { ScryptPasswordHasher } from "../../src/infrastructure/auth/scrypt-password-hasher";
+import { ScryptPasswordHasher } from "../../src/infrastructure/outbound/security/scrypt-password-hasher";
 import { User } from "../../src/domain/entities/user";
 import { CryptoUtils } from "../../src/shared/utils/crypto";
 import { FakeCacheInvalidator } from "../../src/shared/testing/fake-cache-invalidator";

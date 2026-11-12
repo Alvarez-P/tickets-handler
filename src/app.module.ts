@@ -5,11 +5,11 @@ import { environment } from "./shared/config/environment";
 import { CONTAINER } from "./infrastructure/di/tokens";
 import { CompositionModule } from "./infrastructure/di/composition.module";
 import { Container } from "./infrastructure/di/container";
-import { RestModule } from "./infrastructure/http/rest.module";
-import { GraphqlModule } from "./infrastructure/graphql/graphql.module";
-import { GqlThrottlerGuard } from "./infrastructure/rate-limit/gql-throttler.guard";
-import { CorrelationIdMiddleware } from "./infrastructure/http/correlation-id.middleware";
-import { DomainErrorFilter } from "./infrastructure/http/domain-error.filter";
+import { RestModule } from "./infrastructure/inbound/http/rest.module";
+import { GraphqlModule } from "./infrastructure/inbound/graphql/graphql.module";
+import { GqlThrottlerGuard } from "./infrastructure/inbound/rate-limit/gql-throttler.guard";
+import { CorrelationIdMiddleware } from "./infrastructure/inbound/http/correlation-id.middleware";
+import { DomainErrorFilter } from "./infrastructure/inbound/http/domain-error.filter";
 
 @Module({
   imports: [

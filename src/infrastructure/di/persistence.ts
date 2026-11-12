@@ -1,7 +1,7 @@
-import { closeDrizzle, getDrizzleClient } from "../persistence/database";
-import { DrizzleOutbox } from "../persistence/drizzle-outbox";
-import { DrizzleUnitOfWork } from "../persistence/drizzle-unit-of-work";
-import { DrizzleUserRepository } from "../persistence/drizzle-user.repository";
+import { closeDrizzle, getDrizzleClient } from "../outbound/persistence/database";
+import { DrizzleOutbox } from "../outbound/persistence/drizzle-outbox";
+import { DrizzleUnitOfWork } from "../outbound/persistence/drizzle-unit-of-work";
+import { DrizzleUserRepository } from "../outbound/persistence/drizzle-user.repository";
 import { Persistence } from "./persistence-handle";
 
 export const createPersistence = async (): Promise<Persistence> => {

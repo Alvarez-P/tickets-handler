@@ -1,9 +1,9 @@
 import { Global, Inject, Module, OnApplicationShutdown } from "@nestjs/common";
 import { CqrsModule } from "@nestjs/cqrs";
-import { authCqrsHandlers } from "../cqrs/auth.cqrs";
-import { userCqrsHandlers } from "../cqrs/user.cqrs";
-import { ticketsCqrsHandlers } from "../cqrs/tickets.cqrs";
-import { staffCqrsHandlers } from "../cqrs/staff.cqrs";
+import { authCqrsHandlers } from "../inbound/cqrs/auth.cqrs";
+import { userCqrsHandlers } from "../inbound/cqrs/user.cqrs";
+import { ticketsCqrsHandlers } from "../inbound/cqrs/tickets.cqrs";
+import { staffCqrsHandlers } from "../inbound/cqrs/staff.cqrs";
 import { Container, buildContainer } from "./container";
 import {
   ACCEPT_INVITATION,
