@@ -6,8 +6,8 @@ import { AgentRepository } from "../../domain/repositories/agent.repository";
 import { SpecialtyRepository } from "../../domain/repositories/specialty.repository";
 import { TicketEventLog } from "../../domain/repositories/ticket-event-log";
 import { TicketRepository } from "../../domain/repositories/ticket.repository";
-import { SearchIndex, SearchOptions, SearchResult } from "../contracts/search-index";
-import { TicketTransaction, TicketUnitOfWork } from "../contracts/ticket-unit-of-work";
+import { SearchIndex, SearchOptions, SearchResult } from "../../application/ports/search-index";
+import { TicketTransaction, TicketUnitOfWork } from "../../application/ports/ticket-unit-of-work";
 import { InMemoryOutboxWriter } from "./in-memory-staff";
 
 export class InMemoryTicketRepository implements TicketRepository {

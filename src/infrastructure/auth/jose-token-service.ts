@@ -1,5 +1,5 @@
 import { SignJWT, jwtVerify } from "jose";
-import { AuthClaims, TokenService } from "../../shared/contracts/token-service";
+import { AuthClaims, TokenService } from "../../application/ports/token-service";
 
 export class JoseTokenService implements TokenService {
   private readonly key: Uint8Array;

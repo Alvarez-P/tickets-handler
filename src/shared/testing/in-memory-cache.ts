@@ -1,4 +1,4 @@
-import { Cache } from "../contracts/cache";
+import { Cache } from "../../application/ports/cache";
 
 export class InMemoryCache implements Cache {
   private readonly entries = new Map<string, unknown>();

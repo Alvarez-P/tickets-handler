@@ -7,7 +7,7 @@ import { TransitionedTicket } from "../../application/use-cases/tickets/transiti
 import { TicketSearchPage } from "../../application/use-cases/tickets/search-tickets.use-case";
 import { TicketView } from "../../application/use-cases/tickets/ticket-view.projection";
 import { GetTicketQuery, ReceiveTicketCommand, SearchTicketsQuery, TransitionTicketCommand } from "../../application/use-cases/tickets/tickets.cqrs";
-import { AuthClaims } from "../../shared/contracts/token-service";
+import { AuthClaims } from "../../application/ports/token-service";
 import { Roles } from "../auth/roles.decorator";
 import { RolesGuard } from "../auth/roles.guard";
 import { AuthenticatedRequest, JwtAuthGuard } from "./jwt-auth.guard";

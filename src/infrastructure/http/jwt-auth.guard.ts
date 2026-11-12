@@ -1,6 +1,6 @@
 import { CanActivate, ExecutionContext, Inject, Injectable, UnauthorizedException } from "@nestjs/common";
 import { TOKENS } from "../di/composition.module";
-import { AuthClaims, TokenService } from "../../shared/contracts/token-service";
+import { AuthClaims, TokenService } from "../../application/ports/token-service";
 import { readRequest } from "../auth/request-claims";
 import { verifyBearer } from "./bearer";
 

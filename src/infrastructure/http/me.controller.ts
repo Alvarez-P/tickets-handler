@@ -1,6 +1,6 @@
 import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 import { Controller, Get, Req, UseGuards } from "@nestjs/common";
-import { AuthClaims } from "../../shared/contracts/token-service";
+import { AuthClaims } from "../../application/ports/token-service";
 import { AuthenticatedRequest, JwtAuthGuard } from "./jwt-auth.guard";
 
 @ApiTags("auth")

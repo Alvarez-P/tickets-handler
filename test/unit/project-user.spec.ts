@@ -1,6 +1,6 @@
 import { ProjectUser } from "../../src/application/use-cases/project-user.use-case";
-import { SearchIndex, SearchResult } from "../../src/shared/contracts/search-index";
-import { UserRecord } from "../../src/shared/contracts/user-record";
+import { SearchIndex, SearchResult } from "../../src/application/ports/search-index";
+import { UserRecord } from "../../src/domain/entities/user";
 
 class FakeIndex implements SearchIndex<UserRecord> {
   readonly documents = new Map<string, UserRecord>();

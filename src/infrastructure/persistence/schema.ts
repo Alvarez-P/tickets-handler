@@ -13,10 +13,10 @@ import {
   timestamp,
   uniqueIndex,
 } from "drizzle-orm/pg-core";
-import { ROLES, Role } from "../../shared/contracts/role";
+import { ROLES, Role } from "../../domain/value-objects/role";
 import type { EventMetadata, TicketEvent } from "../../domain/events/ticket-events";
 import { TICKET_TYPES, TicketType } from "../../domain/value-objects/ticket-type";
-import { USER_STATUSES, UserStatus } from "../../shared/contracts/user-record";
+import { USER_STATUSES, UserStatus } from "../../domain/entities/user";
 
 const oneOf = (column: AnyPgColumn, values: readonly string[]): SQL =>
   sql`${column} in (${sql.join(

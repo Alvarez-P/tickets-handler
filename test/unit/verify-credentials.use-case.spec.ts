@@ -1,7 +1,7 @@
 import { VerifyCredentials } from "../../src/application/use-cases/auth/verify-credentials.use-case";
 import { InvalidCredentials } from "../../src/domain/errors/auth-errors";
 import { ScryptPasswordHasher } from "../../src/infrastructure/auth/scrypt-password-hasher";
-import { UserRecord, UserStatus } from "../../src/shared/contracts/user-record";
+import { UserRecord, UserStatus } from "../../src/domain/entities/user";
 import { InMemoryCredentialStore } from "../../src/shared/testing/in-memory-auth-stores";
 import { InMemoryRepository } from "../../src/shared/testing/in-memory-repository";
 

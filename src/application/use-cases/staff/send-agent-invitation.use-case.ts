@@ -1,8 +1,8 @@
 import { AgentRepository } from "../../../domain/repositories/agent.repository";
-import { Clock } from "../../../shared/contracts/clock";
-import { EmailSender } from "../../../shared/contracts/email-sender";
-import { InvitationStore } from "../../../shared/contracts/invitation-store";
-import { UseCase } from "../../../shared/contracts/use-case";
+import { Clock } from "../../ports/clock";
+import { EmailSender } from "../../ports/email-sender";
+import { InvitationStore } from "../../ports/invitation-store";
+import { UseCase } from "../../use-case";
 import { CryptoUtils } from "../../../shared/utils/crypto";
 
 export interface SendAgentInvitationInput {

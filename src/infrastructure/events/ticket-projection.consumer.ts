@@ -1,9 +1,9 @@
 import { ProjectTicketInput } from "../../application/use-cases/tickets/project-ticket.use-case";
 import { TICKET_EVENTS_TOPIC, TicketEventMessage } from "../../domain/events/ticket-events";
-import { InboxStore } from "../../shared/contracts/inbox";
-import { MessageConsumer } from "../../shared/contracts/message-consumer";
-import { MessagePublisher } from "../../shared/contracts/message-publisher";
-import { UseCase } from "../../shared/contracts/use-case";
+import { InboxStore } from "./inbox";
+import { MessageConsumer } from "../messaging/message-consumer";
+import { MessagePublisher } from "../messaging/message-publisher";
+import { UseCase } from "../../application/use-case";
 import { resilientHandler } from "./resilient-handler";
 
 export const TICKET_PROJECTION_GROUP = "ticket-projection";

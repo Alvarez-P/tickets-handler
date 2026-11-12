@@ -5,7 +5,7 @@ import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import { CreateUserCommand, GetUserQuery } from "../../application/use-cases/user.cqrs";
 import { Roles } from "../auth/roles.decorator";
 import { RolesGuard } from "../auth/roles.guard";
-import { UserRecord } from "../../shared/contracts/user-record";
+import { UserRecord } from "../../domain/entities/user";
 import { createUserSchema } from "./create-user.schema";
 import { JwtAuthGuard } from "./jwt-auth.guard";
 

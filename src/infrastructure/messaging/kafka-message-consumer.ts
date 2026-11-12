@@ -1,5 +1,5 @@
 import { Consumer, Kafka } from "kafkajs";
-import { MessageConsumer, MessageContext, MessageHandler } from "../../shared/contracts/message-consumer";
+import { MessageConsumer, MessageContext, MessageHandler } from "./message-consumer";
 
 export class KafkaMessageConsumer implements MessageConsumer {
   private readonly kafka: Kafka;

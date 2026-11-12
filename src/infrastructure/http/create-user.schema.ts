@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { ROLES } from "../../shared/contracts/role";
+import { ROLES } from "../../domain/value-objects/role";
 
 export const createUserSchema = z.object({
   email: z.email(),

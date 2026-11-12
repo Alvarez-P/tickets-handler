@@ -8,10 +8,10 @@ import { GetTicket, GetTicketInput } from "../../application/use-cases/tickets/g
 import { SearchTickets, SearchTicketsInput, TicketSearchPage } from "../../application/use-cases/tickets/search-tickets.use-case";
 import { TicketView } from "../../application/use-cases/tickets/ticket-view.projection";
 import { TicketEventLog } from "../../domain/repositories/ticket-event-log";
-import { SearchIndex } from "../../shared/contracts/search-index";
+import { SearchIndex } from "../../application/ports/search-index";
 import { TicketClassifier } from "../../domain/services/ticket-classifier";
-import { TicketUnitOfWork } from "../../shared/contracts/ticket-unit-of-work";
-import { UseCase } from "../../shared/contracts/use-case";
+import { TicketUnitOfWork } from "../../application/ports/ticket-unit-of-work";
+import { UseCase } from "../../application/use-case";
 
 export interface TicketsContainer {
   receiveTicket: UseCase<ReceiveTicketCommand, ReceivedTicket>;

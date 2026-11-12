@@ -1,5 +1,5 @@
 
-import { UserTransaction, UserUnitOfWork } from "../../shared/contracts/unit-of-work";
+import { UserTransaction, UserUnitOfWork } from "../../application/ports/user-unit-of-work";
 import { DrizzleCredentialStore } from "./drizzle-credential-store";
 import { DrizzleClient } from "./drizzle-client";
 import { DrizzleOutbox } from "./drizzle-outbox";

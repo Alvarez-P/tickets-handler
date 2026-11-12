@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { and, eq, gt, isNull } from "drizzle-orm";
-import { InvitationStore } from "../../shared/contracts/invitation-store";
+import { InvitationStore } from "../../application/ports/invitation-store";
 import { DrizzleClient } from "./drizzle-client";
 import { agentInvitations } from "./schema";
 

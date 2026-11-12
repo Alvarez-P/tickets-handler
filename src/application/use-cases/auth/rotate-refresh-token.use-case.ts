@@ -1,9 +1,9 @@
 import { InvalidRefreshToken } from "../../../domain/errors/auth-errors";
-import { Clock } from "../../../shared/contracts/clock";
-import { RefreshTokenStore } from "../../../shared/contracts/refresh-token-store";
-import { Repository } from "../../../shared/contracts/repository";
-import { UseCase } from "../../../shared/contracts/use-case";
-import { UserRecord } from "../../../shared/contracts/user-record";
+import { Clock } from "../../ports/clock";
+import { RefreshTokenStore } from "../../ports/refresh-token-store";
+import { Repository } from "../../../domain/repositories/repository";
+import { UseCase } from "../../use-case";
+import { UserRecord } from "../../../domain/entities/user";
 import { CryptoUtils } from "../../../shared/utils/crypto";
 import { IssueTokenPairInput, TokenPair } from "./issue-token-pair.use-case";
 

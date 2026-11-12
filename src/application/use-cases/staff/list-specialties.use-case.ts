@@ -1,7 +1,7 @@
 import { Specialty } from "../../../domain/entities/specialty";
 import { SpecialtyRepository } from "../../../domain/repositories/specialty.repository";
-import { Page } from "../../../shared/contracts/query";
-import { UseCase } from "../../../shared/contracts/use-case";
+import { Page } from "../../../domain/repositories/query";
+import { UseCase } from "../../use-case";
 
 export interface ListSpecialtiesInput {
   active?: boolean;

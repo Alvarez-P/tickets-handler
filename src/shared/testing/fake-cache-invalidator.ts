@@ -1,4 +1,4 @@
-import { CacheInvalidator } from "../contracts/cache";
+import { CacheInvalidator } from "../../application/ports/cache";
 
 export class FakeCacheInvalidator implements CacheInvalidator {
   readonly invalidated: string[] = [];

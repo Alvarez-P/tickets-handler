@@ -1,6 +1,6 @@
 import { TicketEventLog } from "../../../domain/repositories/ticket-event-log";
-import { SearchIndex } from "../../../shared/contracts/search-index";
-import { UseCase } from "../../../shared/contracts/use-case";
+import { SearchIndex } from "../../ports/search-index";
+import { UseCase } from "../../use-case";
 import { TicketView, projectTicketView } from "./ticket-view.projection";
 
 export interface ProjectTicketInput {

@@ -1,9 +1,9 @@
 import { AgentCreated, STAFF_EVENTS_TOPIC } from "../../domain/events/staff-events";
-import { EventEnvelope } from "../../shared/contracts/event-envelope";
-import { InboxStore } from "../../shared/contracts/inbox";
-import { MessageConsumer } from "../../shared/contracts/message-consumer";
-import { MessagePublisher } from "../../shared/contracts/message-publisher";
-import { UseCase } from "../../shared/contracts/use-case";
+import { EventEnvelope } from "../messaging/event-envelope";
+import { InboxStore } from "./inbox";
+import { MessageConsumer } from "../messaging/message-consumer";
+import { MessagePublisher } from "../messaging/message-publisher";
+import { UseCase } from "../../application/use-case";
 import { SendAgentInvitationInput } from "../../application/use-cases/staff/send-agent-invitation.use-case";
 import { resilientHandler } from "./resilient-handler";
 

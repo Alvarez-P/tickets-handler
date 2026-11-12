@@ -2,7 +2,7 @@ import { IssueTokenPair } from "../../src/application/use-cases/auth/issue-token
 import { RotateRefreshToken } from "../../src/application/use-cases/auth/rotate-refresh-token.use-case";
 import { InvalidRefreshToken } from "../../src/domain/errors/auth-errors";
 import { JoseTokenService } from "../../src/infrastructure/auth/jose-token-service";
-import { UserRecord } from "../../src/shared/contracts/user-record";
+import { UserRecord } from "../../src/domain/entities/user";
 import { FixedClock, InMemoryRefreshTokenStore } from "../../src/shared/testing/in-memory-auth-stores";
 import { InMemoryRepository } from "../../src/shared/testing/in-memory-repository";
 

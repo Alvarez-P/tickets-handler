@@ -1,7 +1,7 @@
 import { and, asc, count, desc, eq } from "drizzle-orm";
 import { PgColumn as AnyColumn, PgTable as AnyTable } from "drizzle-orm/pg-core";
-import { Page, Query, QueryAdapter } from "../../shared/contracts/query";
-import { resolvePagination } from "../../shared/contracts/pagination";
+import { Page, Query, QueryAdapter } from "../../domain/repositories/query";
+import { resolvePagination } from "../../domain/repositories/pagination";
 import { DrizzleClient } from "./drizzle-client";
 
 export type IdentifiedTable = AnyTable & { id: AnyColumn };

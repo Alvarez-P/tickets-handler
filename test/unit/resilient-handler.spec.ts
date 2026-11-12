@@ -1,7 +1,7 @@
 import { DEAD_LETTER_SUFFIX, resilientHandler } from "../../src/infrastructure/events/resilient-handler";
-import { EventEnvelope } from "../../src/shared/contracts/event-envelope";
-import { MessageContext } from "../../src/shared/contracts/message-consumer";
-import { MessagePublisher, PublishOptions } from "../../src/shared/contracts/message-publisher";
+import { EventEnvelope } from "../../src/infrastructure/messaging/event-envelope";
+import { MessageContext } from "../../src/infrastructure/messaging/message-consumer";
+import { MessagePublisher, PublishOptions } from "../../src/infrastructure/messaging/message-publisher";
 import { InMemoryInbox } from "../../src/shared/testing/in-memory-inbox";
 
 const CONSUMER = "test-consumer";

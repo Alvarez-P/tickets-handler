@@ -1,5 +1,5 @@
-import type { Role } from "../../shared/contracts/role";
-import type { UserStatus } from "../../shared/contracts/user-record";
+import type { Role } from "../value-objects/role";
+import type { UserStatus } from "./user";
 
 export const AGENT_ROLES = ["support-agent", "specialist-agent"] as const satisfies readonly Role[];
 

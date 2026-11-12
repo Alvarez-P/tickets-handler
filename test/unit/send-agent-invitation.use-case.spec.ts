@@ -1,5 +1,5 @@
 import { SendAgentInvitation } from "../../src/application/use-cases/staff/send-agent-invitation.use-case";
-import { UserRecord } from "../../src/shared/contracts/user-record";
+import { UserRecord } from "../../src/domain/entities/user";
 import { CryptoUtils } from "../../src/shared/utils/crypto";
 import { FakeEmailSender } from "../../src/shared/testing/fake-email-sender";
 import { FixedClock } from "../../src/shared/testing/in-memory-auth-stores";

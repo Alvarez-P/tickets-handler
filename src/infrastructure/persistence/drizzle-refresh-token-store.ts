@@ -1,5 +1,5 @@
 import { and, eq, gt, isNull } from "drizzle-orm";
-import { NewRefreshToken, RefreshTokenStore, RotationResult } from "../../shared/contracts/refresh-token-store";
+import { NewRefreshToken, RefreshTokenStore, RotationResult } from "../../application/ports/refresh-token-store";
 import { DrizzleClient } from "./drizzle-client";
 import { refreshTokens } from "./schema";
 

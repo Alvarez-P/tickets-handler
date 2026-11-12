@@ -3,11 +3,11 @@ import { AgentRef } from "../../domain/entities/ticket";
 import { AgentFilter, AgentRepository } from "../../domain/repositories/agent.repository";
 import { SpecialtyRecord, SpecialtyRepository } from "../../domain/repositories/specialty.repository";
 import { TicketType } from "../../domain/value-objects/ticket-type";
-import { OutboxWriter } from "../contracts/outbox";
-import { resolvePagination } from "../contracts/pagination";
-import { Page } from "../contracts/query";
-import { StaffTransaction, StaffUnitOfWork } from "../contracts/staff-unit-of-work";
-import { UserRecord } from "../contracts/user-record";
+import { OutboxWriter } from "../../application/ports/outbox";
+import { resolvePagination } from "../../domain/repositories/pagination";
+import { Page } from "../../domain/repositories/query";
+import { StaffTransaction, StaffUnitOfWork } from "../../application/ports/staff-unit-of-work";
+import { UserRecord } from "../../domain/entities/user";
 import { InMemoryRepository } from "./in-memory-repository";
 import { QueuedMessage } from "./in-memory-unit-of-work";
 

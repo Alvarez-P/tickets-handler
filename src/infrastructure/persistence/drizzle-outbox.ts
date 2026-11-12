@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { asc, inArray, isNull } from "drizzle-orm";
-import { OutboxMessage, OutboxStore } from "../../shared/contracts/outbox";
+import { OutboxMessage, OutboxStore } from "../../application/ports/outbox";
 import { DrizzleClient } from "./drizzle-client";
 import { outboxMessages } from "./schema";
 

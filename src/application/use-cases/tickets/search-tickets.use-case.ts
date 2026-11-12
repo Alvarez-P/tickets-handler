@@ -1,5 +1,5 @@
-import { SearchIndex, SearchOptions } from "../../../shared/contracts/search-index";
-import { UseCase } from "../../../shared/contracts/use-case";
+import { SearchIndex, SearchOptions } from "../../ports/search-index";
+import { UseCase } from "../../use-case";
 import { TicketView } from "./ticket-view.projection";
 
 export interface SearchTicketsInput extends SearchOptions {

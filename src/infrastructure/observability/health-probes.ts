@@ -2,7 +2,7 @@ import { Client } from "@elastic/elasticsearch";
 import Redis from "ioredis";
 import { Kafka } from "kafkajs";
 import { Pool } from "pg";
-import { HealthProbe } from "../../shared/contracts/health-probe";
+import { HealthProbe } from "./health-probe";
 
 export interface HealthProbeSources {
   database: Pick<Pool, "query">;

@@ -1,8 +1,8 @@
 import { z } from "zod";
 import { AGENT_ROLES } from "../../domain/entities/agent";
 import { TICKET_TYPES } from "../../domain/value-objects/ticket-type";
-import { ROLES } from "../../shared/contracts/role";
-import { USER_STATUSES } from "../../shared/contracts/user-record";
+import { ROLES } from "../../domain/value-objects/role";
+import { USER_STATUSES } from "../../domain/entities/user";
 
 const pagination = {
   page: z.coerce.number().int().positive().optional(),

@@ -1,10 +1,10 @@
 import { InvalidInvitation } from "../../../domain/errors/auth-errors";
-import { CacheInvalidator } from "../../../shared/contracts/cache";
-import { Clock } from "../../../shared/contracts/clock";
-import { InvitationStore } from "../../../shared/contracts/invitation-store";
-import { PasswordHasher } from "../../../shared/contracts/password-hasher";
-import { UserUnitOfWork } from "../../../shared/contracts/unit-of-work";
-import { UseCase } from "../../../shared/contracts/use-case";
+import { CacheInvalidator } from "../../ports/cache";
+import { Clock } from "../../ports/clock";
+import { InvitationStore } from "../../ports/invitation-store";
+import { PasswordHasher } from "../../ports/password-hasher";
+import { UserUnitOfWork } from "../../ports/user-unit-of-work";
+import { UseCase } from "../../use-case";
 import { CryptoUtils } from "../../../shared/utils/crypto";
 
 export interface AcceptInvitationInput {

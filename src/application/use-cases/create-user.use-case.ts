@@ -1,9 +1,9 @@
 import { randomUUID } from "node:crypto";
-import { PasswordHasher } from "../../shared/contracts/password-hasher";
-import { Role } from "../../shared/contracts/role";
-import { UserUnitOfWork } from "../../shared/contracts/unit-of-work";
-import { UseCase } from "../../shared/contracts/use-case";
-import { UserRecord, UserStatus } from "../../shared/contracts/user-record";
+import { PasswordHasher } from "../ports/password-hasher";
+import { Role } from "../../domain/value-objects/role";
+import { UserUnitOfWork } from "../ports/user-unit-of-work";
+import { UseCase } from "../use-case";
+import { UserRecord, UserStatus } from "../../domain/entities/user";
 
 export interface CreateUserInput {
   email: string;

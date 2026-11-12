@@ -1,5 +1,5 @@
-import { MessagePublisher } from "../../shared/contracts/message-publisher";
-import { UseCase } from "../../shared/contracts/use-case";
+import { MessagePublisher } from "./message-publisher";
+import { UseCase } from "../../application/use-case";
 
 export class PublishingUseCase<TInput, TOutput> implements UseCase<TInput, TOutput> {
   constructor(

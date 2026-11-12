@@ -1,6 +1,6 @@
 import { randomBytes, scrypt, timingSafeEqual } from "node:crypto";
 import { promisify } from "node:util";
-import { PasswordHasher } from "../../shared/contracts/password-hasher";
+import { PasswordHasher } from "../../application/ports/password-hasher";
 
 const derive = promisify(scrypt) as (password: string, salt: Buffer, keyLength: number) => Promise<Buffer>;
 const KEY_LENGTH = 64;

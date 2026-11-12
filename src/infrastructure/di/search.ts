@@ -2,8 +2,8 @@ import type { TicketView } from "../../application/use-cases/tickets/ticket-view
 import { Client } from "@elastic/elasticsearch";
 import { ElasticsearchSearchIndex } from "../search/elasticsearch-search-index";
 import { requireElasticsearchUrl } from "../../shared/config/environment";
-import { SearchIndex } from "../../shared/contracts/search-index";
-import { UserRecord } from "../../shared/contracts/user-record";
+import { SearchIndex } from "../../application/ports/search-index";
+import { UserRecord } from "../../domain/entities/user";
 
 export const createUserSearchIndex = async (): Promise<SearchIndex<UserRecord>> => {
   const index = new ElasticsearchSearchIndex<UserRecord>(new Client({ node: requireElasticsearchUrl() }), {

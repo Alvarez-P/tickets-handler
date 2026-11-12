@@ -1,5 +1,5 @@
 import { CachedRepository } from "../../src/infrastructure/cache/cached-repository";
-import { UserRecord } from "../../src/shared/contracts/user-record";
+import { UserRecord } from "../../src/domain/entities/user";
 import { InMemoryCache } from "../../src/shared/testing/in-memory-cache";
 import { InMemoryRepository } from "../../src/shared/testing/in-memory-repository";
 

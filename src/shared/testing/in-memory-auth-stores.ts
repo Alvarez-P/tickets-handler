@@ -1,8 +1,8 @@
-import { Clock } from "../contracts/clock";
-import { CredentialStore, StoredCredential } from "../contracts/credential-store";
-import { NewRefreshToken, RefreshTokenStore, RotationResult } from "../contracts/refresh-token-store";
-import { QueryableRepository } from "../contracts/queryable-repository";
-import { UserRecord } from "../contracts/user-record";
+import { Clock } from "../../application/ports/clock";
+import { CredentialStore, StoredCredential } from "../../application/ports/credential-store";
+import { NewRefreshToken, RefreshTokenStore, RotationResult } from "../../application/ports/refresh-token-store";
+import { QueryableRepository } from "../../domain/repositories/queryable-repository";
+import { UserRecord } from "../../domain/entities/user";
 
 export class InMemoryCredentialStore implements CredentialStore {
   private readonly hashes = new Map<string, string>();

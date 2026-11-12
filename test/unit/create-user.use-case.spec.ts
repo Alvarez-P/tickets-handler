@@ -1,6 +1,6 @@
 import { ScryptPasswordHasher } from "../../src/infrastructure/auth/scrypt-password-hasher";
 import { CreateUser } from "../../src/application/use-cases/create-user.use-case";
-import { UserRecord } from "../../src/shared/contracts/user-record";
+import { UserRecord } from "../../src/domain/entities/user";
 import { InMemoryCredentialStore } from "../../src/shared/testing/in-memory-auth-stores";
 import { InMemoryRepository } from "../../src/shared/testing/in-memory-repository";
 import { InMemoryUnitOfWork } from "../../src/shared/testing/in-memory-unit-of-work";

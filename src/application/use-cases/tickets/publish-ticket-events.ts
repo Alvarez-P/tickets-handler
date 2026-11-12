@@ -1,5 +1,5 @@
 import { StoredTicketEvent, TICKET_EVENTS_TOPIC, TicketEventMessage } from "../../../domain/events/ticket-events";
-import { OutboxWriter } from "../../../shared/contracts/outbox";
+import { OutboxWriter } from "../../ports/outbox";
 
 export const publishTicketEvents = async (outbox: OutboxWriter, stored: readonly StoredTicketEvent[]): Promise<void> => {
   for (const { event, eventId, ticketId, version, position, occurredAt, metadata } of stored) {

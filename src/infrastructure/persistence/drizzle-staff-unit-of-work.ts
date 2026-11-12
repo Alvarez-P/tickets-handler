@@ -1,4 +1,4 @@
-import { StaffTransaction, StaffUnitOfWork } from "../../shared/contracts/staff-unit-of-work";
+import { StaffTransaction, StaffUnitOfWork } from "../../application/ports/staff-unit-of-work";
 import { DrizzleAgentRepository } from "./drizzle-agent.repository";
 import { DrizzleClient } from "./drizzle-client";
 import { DrizzleOutbox } from "./drizzle-outbox";

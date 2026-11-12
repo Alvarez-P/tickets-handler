@@ -1,5 +1,5 @@
 import Redis from "ioredis";
-import { Cache } from "../../shared/contracts/cache";
+import { Cache } from "../../application/ports/cache";
 
 export class RedisCache implements Cache {
   readonly client: Redis;

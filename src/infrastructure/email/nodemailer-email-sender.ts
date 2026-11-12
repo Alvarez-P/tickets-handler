@@ -1,5 +1,5 @@
 import { Transporter, createTransport } from "nodemailer";
-import { EmailMessage, EmailSender } from "../../shared/contracts/email-sender";
+import { EmailMessage, EmailSender } from "../../application/ports/email-sender";
 
 export interface SmtpConfig {
   host: string;

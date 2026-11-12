@@ -1,5 +1,5 @@
 import { and, eq } from "drizzle-orm";
-import { InboxStore } from "../../shared/contracts/inbox";
+import { InboxStore } from "../events/inbox";
 import { DrizzleClient } from "./drizzle-client";
 import { processedEvents } from "./schema";
 

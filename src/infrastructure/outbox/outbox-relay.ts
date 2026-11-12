@@ -1,6 +1,6 @@
 import { logger } from "../../shared/logging/logger";
-import { MessagePublisher } from "../../shared/contracts/message-publisher";
-import { OutboxMessage, OutboxStore } from "../../shared/contracts/outbox";
+import { MessagePublisher } from "../messaging/message-publisher";
+import { OutboxMessage, OutboxStore } from "../../application/ports/outbox";
 
 export class OutboxRelay {
   private timer?: NodeJS.Timeout;

@@ -1,4 +1,4 @@
-import { AuthClaims, TokenService } from "../../shared/contracts/token-service";
+import { AuthClaims, TokenService } from "../../application/ports/token-service";
 
 const BEARER_PREFIX = "Bearer ";
 
