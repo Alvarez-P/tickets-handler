@@ -1,6 +1,6 @@
 import { CredentialStore } from "../../application/ports/credential-store";
 import { QueryableRepository } from "../../domain/repositories/queryable-repository";
-import { UserRecord } from "../../domain/entities/user";
+import { User } from "../../domain/entities/user";
 import { UserTransaction, UserUnitOfWork } from "../../application/ports/user-unit-of-work";
 import { InMemoryCredentialStore } from "./in-memory-auth-stores";
 
@@ -13,7 +13,7 @@ export class InMemoryUnitOfWork implements UserUnitOfWork {
   readonly messages: QueuedMessage[] = [];
 
   constructor(
-    private readonly users: QueryableRepository<UserRecord>,
+    private readonly users: QueryableRepository<User>,
     private readonly credentials: CredentialStore = new InMemoryCredentialStore(users),
   ) {}
 

@@ -1,6 +1,6 @@
 import type { Page } from "./query";
 import type { QueryableRepository } from "./queryable-repository";
-import type { UserRecord, UserStatus } from "../entities/user";
+import type { User, UserStatus } from "../entities/user";
 import type { Agent, AgentRole } from "../entities/agent";
 import type { AgentRef } from "../entities/ticket";
 
@@ -12,8 +12,8 @@ export interface AgentFilter {
   pageSize?: number;
 }
 
-export interface AgentRepository extends QueryableRepository<UserRecord> {
-  findByEmail(email: string): Promise<UserRecord | null>;
+export interface AgentRepository extends QueryableRepository<User> {
+  findByEmail(email: string): Promise<User | null>;
   setSpecialties(agentId: string, specialtyIds: string[]): Promise<void>;
   findWithSpecialties(id: string): Promise<Agent | null>;
   findAgents(filter: AgentFilter): Promise<Page<Agent>>;

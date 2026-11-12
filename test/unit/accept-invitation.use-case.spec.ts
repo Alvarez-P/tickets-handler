@@ -2,7 +2,7 @@ import { AcceptInvitation } from "../../src/application/use-cases/auth/accept-in
 import { VerifyCredentials } from "../../src/application/use-cases/auth/verify-credentials.use-case";
 import { InvalidCredentials, InvalidInvitation } from "../../src/domain/errors/auth-errors";
 import { ScryptPasswordHasher } from "../../src/infrastructure/auth/scrypt-password-hasher";
-import { UserRecord } from "../../src/domain/entities/user";
+import { User } from "../../src/domain/entities/user";
 import { CryptoUtils } from "../../src/shared/utils/crypto";
 import { FakeCacheInvalidator } from "../../src/shared/testing/fake-cache-invalidator";
 import { FixedClock, InMemoryCredentialStore } from "../../src/shared/testing/in-memory-auth-stores";
@@ -16,7 +16,7 @@ const PASSWORD = "a-long-enough-password";
 
 const build = async () => {
   const hasher = new ScryptPasswordHasher();
-  const users = new InMemoryRepository<UserRecord>();
+  const users = new InMemoryRepository<User>();
   await users.save({ id: "a1", email: "ada@example.com", name: "Ada", role: "support-agent", status: "invited" });
   const credentials = new InMemoryCredentialStore(users);
   const invitations = new InMemoryInvitationStore();

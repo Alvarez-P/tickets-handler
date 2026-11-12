@@ -1,13 +1,13 @@
 import { logger } from "../../shared/logging/logger";
 import { MessageConsumer } from "../messaging/message-consumer";
 import { UseCase } from "../../application/use-case";
-import { UserRecord } from "../../domain/entities/user";
+import { User } from "../../domain/entities/user";
 
 export const startEventConsumers = async (
   consumer: MessageConsumer,
-  projectUser: UseCase<UserRecord, void>,
+  projectUser: UseCase<User, void>,
 ): Promise<void> => {
-  await consumer.subscribe<UserRecord>("user.created", async (user, context) => {
+  await consumer.subscribe<User>("user.created", async (user, context) => {
     logger.info({ userId: user.id, partition: context.partition, offset: context.offset }, "user.created received");
     await projectUser.execute(user);
   });

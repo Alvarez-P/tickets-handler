@@ -2,7 +2,7 @@ import { IssueTokenPair } from "../../src/application/use-cases/auth/issue-token
 import { RotateRefreshToken } from "../../src/application/use-cases/auth/rotate-refresh-token.use-case";
 import { InvalidRefreshToken } from "../../src/domain/errors/auth-errors";
 import { JoseTokenService } from "../../src/infrastructure/auth/jose-token-service";
-import { UserRecord } from "../../src/domain/entities/user";
+import { User } from "../../src/domain/entities/user";
 import { FixedClock, InMemoryRefreshTokenStore } from "../../src/shared/testing/in-memory-auth-stores";
 import { InMemoryRepository } from "../../src/shared/testing/in-memory-repository";
 
@@ -12,7 +12,7 @@ const build = async () => {
   const tokens = new JoseTokenService("test-secret-test-secret-test-secret-1234");
   const store = new InMemoryRefreshTokenStore();
   const clock = new FixedClock(new Date("2026-01-01T00:00:00Z"));
-  const users = new InMemoryRepository<UserRecord>();
+  const users = new InMemoryRepository<User>();
   await users.save({ id: "u1", email: "ada@example.com", name: "Ada", role: "specialist-agent", status: "active" });
   const issue = new IssueTokenPair(tokens, store, clock, { accessTtlSeconds: 900, refreshTtlDays: 7 });
   const rotate = new RotateRefreshToken(store, users, issue, clock);

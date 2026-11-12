@@ -9,12 +9,12 @@ import {
   UserCreatedEvent,
   userCqrsHandlers,
 } from "../../src/application/use-cases/user.cqrs";
-import { UserRecord } from "../../src/domain/entities/user";
+import { User } from "../../src/domain/entities/user";
 import { InMemoryUnitOfWork } from "../../src/shared/testing/in-memory-unit-of-work";
 import { InMemoryRepository } from "../../src/shared/testing/in-memory-repository";
 
 const build = async () => {
-  const users = new InMemoryRepository<UserRecord>();
+  const users = new InMemoryRepository<User>();
   const moduleRef = await Test.createTestingModule({
     imports: [CqrsModule.forRoot()],
     providers: [
@@ -36,14 +36,14 @@ describe("user CQRS", () => {
   it("executes the command through the Nest bus", async () => {
     const { commands, users } = await build();
 
-    const created: UserRecord = await commands.execute(new CreateUserCommand("ada@example.com", "Ada"));
+    const created: User = await commands.execute(new CreateUserCommand("ada@example.com", "Ada"));
 
     expect(await users.findById(created.id)).toEqual(created);
   });
 
   it("answers queries through the query bus", async () => {
     const { commands, queries } = await build();
-    const created: UserRecord = await commands.execute(new CreateUserCommand("ada@example.com", "Ada"));
+    const created: User = await commands.execute(new CreateUserCommand("ada@example.com", "Ada"));
 
     expect(await queries.execute(new GetUserQuery(created.id))).toEqual(created);
     expect(await queries.execute(new GetUserQuery("missing"))).toBeNull();

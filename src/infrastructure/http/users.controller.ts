@@ -5,7 +5,7 @@ import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import { CreateUserCommand, GetUserQuery } from "../../application/use-cases/user.cqrs";
 import { Roles } from "../auth/roles.decorator";
 import { RolesGuard } from "../auth/roles.guard";
-import { UserRecord } from "../../domain/entities/user";
+import { User } from "../../domain/entities/user";
 import { createUserSchema } from "./create-user.schema";
 import { JwtAuthGuard } from "./jwt-auth.guard";
 
@@ -22,7 +22,7 @@ export class UsersController {
 
   @Post()
   @ApiZodBody(createUserSchema)
-  async create(@Body() body: unknown): Promise<UserRecord> {
+  async create(@Body() body: unknown): Promise<User> {
     const parsed = createUserSchema.safeParse(body);
     if (!parsed.success) {
       throw new BadRequestException(parsed.error.issues);
@@ -31,7 +31,7 @@ export class UsersController {
   }
 
   @Get(":id")
-  async get(@Param("id") id: string): Promise<UserRecord> {
+  async get(@Param("id") id: string): Promise<User> {
     const user = await this.queries.execute(new GetUserQuery(id));
     if (!user) {
       throw new NotFoundException();

@@ -2,12 +2,12 @@ import { Clock } from "../../application/ports/clock";
 import { CredentialStore, StoredCredential } from "../../application/ports/credential-store";
 import { NewRefreshToken, RefreshTokenStore, RotationResult } from "../../application/ports/refresh-token-store";
 import { QueryableRepository } from "../../domain/repositories/queryable-repository";
-import { UserRecord } from "../../domain/entities/user";
+import { User } from "../../domain/entities/user";
 
 export class InMemoryCredentialStore implements CredentialStore {
   private readonly hashes = new Map<string, string>();
 
-  constructor(private readonly users: QueryableRepository<UserRecord>) {}
+  constructor(private readonly users: QueryableRepository<User>) {}
 
   async set(userId: string, hash: string): Promise<void> {
     this.hashes.set(userId, hash);

@@ -1,5 +1,5 @@
 import { SendAgentInvitation } from "../../src/application/use-cases/staff/send-agent-invitation.use-case";
-import { UserRecord } from "../../src/domain/entities/user";
+import { User } from "../../src/domain/entities/user";
 import { CryptoUtils } from "../../src/shared/utils/crypto";
 import { FakeEmailSender } from "../../src/shared/testing/fake-email-sender";
 import { FixedClock } from "../../src/shared/testing/in-memory-auth-stores";
@@ -8,9 +8,9 @@ import { InMemoryAgentRepository } from "../../src/shared/testing/in-memory-staf
 
 const NOW = new Date("2026-01-01T00:00:00Z");
 const settings = { publicUrl: "https://app.example.com", ttlHours: 24 };
-const agent: UserRecord = { id: "a1", email: "ada@example.com", name: "Ada", role: "support-agent", status: "invited" };
+const agent: User = { id: "a1", email: "ada@example.com", name: "Ada", role: "support-agent", status: "invited" };
 
-const build = async (status: UserRecord["status"] = "invited") => {
+const build = async (status: User["status"] = "invited") => {
   const agents = new InMemoryAgentRepository();
   await agents.save({ ...agent, status });
   const invitations = new InMemoryInvitationStore();

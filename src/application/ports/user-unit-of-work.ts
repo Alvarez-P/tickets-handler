@@ -1,10 +1,10 @@
 import { CredentialStore } from "./credential-store";
 import { OutboxWriter } from "./outbox";
 import { Repository } from "../../domain/repositories/repository";
-import { UserRecord } from "../../domain/entities/user";
+import { User } from "../../domain/entities/user";
 
 export interface UserTransaction {
-  users: Repository<UserRecord>;
+  users: Repository<User>;
   credentials: CredentialStore;
   outbox: OutboxWriter;
 }
